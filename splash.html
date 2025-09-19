@@ -1,0 +1,63 @@
+<!-- splash.html -->
+<html>
+    <head><title>Loading...</title>
+    <style>
+        body {display: block;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+            background-color: #f0f0f0;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+    </head>
+  
+  <body>
+      <br>
+      <h1>Welcome to TuTap4500</h1><br>
+      <img src="250gioitykheo.png" alt="250 Giới tỳ kheo" loading="lazy">
+        <p>là Từ bỏ sanh y</p>
+        <p>11 tri kiến giải thoát + tri kiến giải thoát uẩn.</p>
+        <hr>
+        
+        <h2>Audio Player with Volume Control</h2>
+        <audio id="myAudio" controls>
+          <source src="4tinhcan.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      
+        <br><br>
+        <label for="volumeSlider">Volume:</label>
+        <input type="range" id="volumeSlider" min="5" max="100" step="5" value="10">
+        <hr>
+
+    <!-- splash page -->
+    <script>
+/*       setTimeout(() => {
+        window.location.href = "TuTap4500.html";
+      }, 5000); */
+    </script>
+
+<!-- volumn contols -->
+    <script>
+      const audio = document.getElementById('myAudio');
+      const volumeSlider = document.getElementById('volumeSlider');
+
+      volumeSlider.addEventListener('input', function () {
+        audio.volume = this.value;
+      });
+    </script>
+
+  </body>
+</html>

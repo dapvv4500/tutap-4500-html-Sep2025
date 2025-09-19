@@ -1,0 +1,36 @@
+{
+  "name": "tutap4500-minimal",
+  "version": "2.0.0",
+  "description": "Minimal size Windows app",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win",
+    "build-minimal": "electron-builder --win --config.compression=maximum"
+  },
+  "devDependencies": {
+    "electron": "25.9.8",
+    "electron-builder": "24.13.3"
+  },
+  "build": {
+    "appId": "com.TuTap.Minimal",
+    "productName": "TuTap4500-Minimal",
+    "directories": {
+      "output": "../dist-minimal"
+    },
+    "files": [
+      "main.js",
+      "TuTap4500.html",
+      "../assets/icon.ico"
+    ],
+    "compression": "maximum",
+    "win": {
+      "icon": "../assets/icon.ico",
+      "target": "portable"
+    }
+  },
+  "keywords": ["minimal", "windows", "app"],
+  "author": "TuTap4500",
+  "license": "ISC"
+}
