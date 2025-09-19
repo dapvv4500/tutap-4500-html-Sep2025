@@ -1,0 +1,2166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Tap-dap4500</title>
+    <!-- <link rel="stylesheet" href="main.css"> -->
+    <style>
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            
+            .highlight {
+            background-color: yellow;
+            }
+
+            body { 
+                font-family: 'Segue UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.4; 
+                color: #edecf5; 
+                background: linear-gradient(135deg, #4a349b 0%, #a28ace 100%); 
+                min-height: 100vh; 
+            }
+
+            .container { 
+                max-width: 1200px; 
+                margin: 0 auto; 
+                padding: 0 10px; 
+            }
+
+            header { 
+                background: rgba(76, 107, 86, 0.95); 
+                backdrop-filter: blur(10px); 
+                padding: 0.5rem 0;
+                position: sticky; 
+                top: 0; 
+                z-index: 1000; 
+                box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1); 
+            }
+
+            nav { 
+                display: flex; 
+                justify-content: space-between; 
+                align-items: center; 
+            }
+
+            .logo { 
+                font-size: 1.6rem; 
+                font-weight: bold; 
+                color: #b5c0f3; 
+            }
+
+            .nav-links {
+                display: flex;
+                list-style: none;
+                gap: 1rem;
+            }
+
+            .nav-links a {
+                text-decoration: none;
+                color: #ffffff;
+                font-weight: 500;
+                transition: color 0.3s ease;
+            }
+
+            .nav-links a:hover {
+                color: #0b28ac;
+            }
+
+            .hero {
+                text-align: center;
+                padding: 0.8rem 0;
+                color: white;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+                margin-bottom: 0.1rem;
+                text-shadow: 2px 2px 4px rgba(227, 241, 228, 0.904);
+            }
+
+            .hero p {
+                font-size: 1rem;
+                margin-bottom: 0.8rem;
+                opacity: 0.7;
+            }
+
+            .btn {
+                display: inline-block;
+                padding: 10px 16px;
+                background: linear-gradient(45deg, #a28ace, #645be9);
+                color: white;
+                text-decoration: none;
+                border-radius: 25px;
+                font-weight: 600;
+                transition: transform 0.3s ease, box-shadow 0.3s ease; 
+                box-shadow: 0 10px 15px rgba(65, 64, 64, 0.2);
+            }
+            
+            .btn-2 {
+                display: inline-block;
+                padding: 4px 16px;
+                background: linear-gradient(45deg, #a28ace, #645be9);
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+                font-weight: 500;
+                transition: transform 0.3s ease, box-shadow 0.3s ease; 
+                box-shadow: 0 5px 10px rgba(65, 64, 64, 0.2);
+            }
+
+            .btn:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            }
+
+            /* Audio Player Styles */
+            .audio-section {
+                background: rgba(108, 75, 228, 0.2);
+                padding: 0rem 0rem;
+                margin: 0rem 0rem; 
+                color: #fdfdfd;
+            }
+
+            .audio-player { 
+                background: linear-gradient(135deg, #4f429b 0%, #646fd1 100%);
+                border-radius: 10px;
+                padding: 1rem; 
+                margin: 1rem 0rem; 
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.82); 
+                color: rgb(255, 255, 255); 
+            }
+
+            .audio-controls { 
+                display: block; 
+                margin: 1rem 1rem 1rem 1rem; 
+            }
+
+            .audio-btn { 
+                background: rgba(255, 255, 255, 0.1); 
+                width: 140px;
+                border: none;
+                color: white; 
+                padding: 1rem 1rem 1rem 1rem; 
+                border-radius: 25px;
+                cursor: pointer; 
+                font-size: 1.2rem; 
+                transition: all 0.3s ease; 
+                backdrop-filter: blur(14px); 
+            }
+
+            .audio-btn:hover { 
+                background: rgba(255, 255, 255, 0.4); 
+                transform: translateY(-5px); 
+            }
+
+            .audio-btn.playing { 
+                background: rgba(159, 146, 216, 0.4); 
+                box-shadow: 0 0 25px rgba(255, 255, 255, 0.3); 
+            }
+
+            .volume-control { 
+                display: block; 
+                align-items: right; 
+            }
+
+            .volume-slider {
+                width: 280px;
+                height: 10px;
+                border-radius: 5px;
+                background: rgba(255, 255, 255, 0.3);
+                outline: none;
+                cursor: pointer;
+            }
+
+            .volume-slider::-webkit-slider-thumb {
+                appearance: true;
+                width: 30px;
+                height: 15px;
+                border-radius: 5%;
+                background: white;
+                cursor: pointer;
+            }
+
+            .progress-bar {
+                width: 100%;
+                height: 10px;
+                background: rgba(165, 131, 228, 0.3);
+                border-radius: 5px;
+                margin: 1.6rem 1rem 0rem 0rem;
+                cursor: pointer;
+                position: relative;
+            }
+
+            .progress-fill {
+                height: 100%;
+                background: linear-gradient(90deg, #fff, #f0f0f0);
+                border-radius: 5px;
+                width: 0%;
+                transition: width 0.1s ease;
+            }
+
+            .time-display {
+                display: flex;
+                justify-content: space-between;
+                font-size: 0.8rem;
+                opacity: 0.8;
+            }
+
+            .audio-visualizer {
+                height: 60px;
+                background: rgba(110, 79, 221, 0.705);
+                border-radius: 10px;
+                margin: 0.2rem 0;
+                display: flex;
+                align-items: end;
+                justify-content: center;
+                gap: 4px;
+                padding: 10px;
+            }
+
+            .visualizer-bar {
+                width: 3px;
+                background: white;
+                border-radius: 2px;
+                transition: height 0.1s ease;
+            }
+
+            .file-upload {
+                background: rgba(255, 255, 255, 0.1);
+                border: 1px dashed rgba(255, 255, 255, 0.3);
+                border-radius: 15px;
+                padding: 0.8rem;
+                text-align: center;
+                margin: 1rem 0;
+                transition: all 0.3s ease;
+            }
+
+            .file-upload:hover {
+                border-color: rgba(255, 255, 255, 0.5);
+                background: rgba(255, 255, 255, 0.3);
+            }
+
+            .file-upload input[type="file"] {
+                display: none;
+            }
+
+            .upload-btn {
+                background: rgba(255, 255, 255, 0.1);
+                border: none;
+                color: white; 
+                padding: 0.2rem 4rem;
+                border-radius: 5px; 
+                cursor: pointer; 
+                font-size: 1rem; 
+                transition: all 0.3s ease;
+            }
+
+            .upload-btn:hover {
+                background: rgba(255, 255, 255, 0.3);
+                transform: translateY(-2px);
+            }
+
+            .playlist {
+                margin: 1rem 0rem;
+                color: rgb(255, 255, 255);
+            }
+
+            .playlist-item {
+                background: rgba(172, 156, 230, 0.836); 
+                font-size: 1rem; 
+                padding: 0.2rem; 
+                margin: 1rem 0;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: all 0.3s ease; 
+                display: flex; 
+                justify-content: space-between; 
+                align-items: right;
+            }
+
+            .playlist-item:hover {
+                background: rgba(141, 151, 221, 0.3);
+                transform: translateX(5px);
+            }
+
+            .playlist-item.active {
+                background: rgba(173, 194, 221, 0.973);
+                box-shadow: 0 0 5px rgba(235, 228, 228, 0.877);
+            }
+
+            /* FEATURES */
+            .features {
+                padding: 1rem 0rem;
+                margin: 1rem 0;
+                background: rgb(137, 181, 221);
+                color: #212566;
+                text-align: left;
+            }
+
+            .features h3 h4 {
+                text-align: left;
+                font-size: 1.6rem;
+                margin-bottom: 1rem;
+                color: #333;
+            }
+
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 0.4rem;
+            }
+
+            .feature-card {
+                background: rgb(218, 224, 228);
+                color: #212566; /* or any darker shade */
+                padding: 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+                text-align: left;
+                overflow-wrap: break-word;
+                opacity: 1;
+                transform: translateY(-2px);
+                transition: opacity 0.6s, transform 0.6s; 
+            }
+
+            .feature-card .card-tts {
+                display: block;
+                width: 40%;
+                margin: 1rem 1rem;
+                padding: 0.4rem 0.6rem;
+                background: #7689e7;
+                font-size: 1rem;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+            }
+
+            .feature-card img {
+                width: 100%;
+                height: auto;
+                border-radius: 5px;
+                margin: 1rem 0rem;
+                display: block;
+            }
+
+            .feature-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .feature-icon {
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+                color: #667eea;
+            }
+
+            .feature-card p {
+                color: #21113a;
+                line-height: 1.6;
+                text-align: left;
+                background: linear-gradient(135deg, #e6ece8 0%, #a6b9af 100%);
+                margin: 0.1rem 0rem;
+            }
+
+            .cta {
+                background-color: #a28ace;
+                color: rgb(26, 23, 133);
+                text-align: left;
+                padding: 0rem 0rem;
+            }
+
+            .cta h2 {
+                font-size: 1rem;
+                margin-bottom: 0.1rem;
+            }
+
+            .cta p {
+                font-size: 0.8rem;
+                margin-bottom: 0.1rem;
+                opacity: 0.9;
+            }
+
+            footer {
+                font-size: 0.8rem;
+                /* background: #237bad; */
+                color: rgba(210, 210, 210, 0.959);
+                text-align: center;
+                padding: 0rem 0;
+                position: sticky; 
+                bottom: 0; 
+                z-index: 1100; 
+            }
+
+            .footer-content {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 0rem;
+            }
+
+            .social-links {
+                display: flex;
+                gap: 1rem;
+            }
+
+            .social-links a {
+                color: white;
+                font-size: 1.5rem;
+                transition: color 0.3s ;
+            }
+
+            .social-links a:hover {
+                color: #667eea;
+            }
+
+            /* Text Reader Controls */
+            .tts-controls {
+                display: flex;
+                align-items: center;
+                background: #cdd1f0;
+                border-radius: 5px;
+                padding: 0.6rem ;
+            }
+
+            .tts-control-s {
+                display: block;
+                align-items: center;
+                background: #a390c7;
+            }
+
+            .tts-controls .tts-btn {
+                background: #647adb;
+                color: #071563;
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+                font-size: 1.2rem;
+            }
+
+            .tts-controls .tts-btn:disabled {
+                opacity: 0.8;
+                cursor: not-allowed;
+            }
+
+            @media (max-width: 768px) {
+                .nav-links { 
+                    display: true;
+                }
+                
+                .hero h1 { 
+                    font-size: 1.5rem; 
+                }
+
+                .footer-content { 
+                    flex-direction: column; 
+                    text-align: center; 
+                }
+
+                .audio-controls { 
+                    flex-direction: row-reverse; 
+                    align-items: center;
+                }
+
+                .volume-control { 
+                    margin-top: 1rem; 
+                }
+            }
+
+            /* Form Elements Styling */
+            textarea { 
+                width: 100%; 
+                height: 320px; 
+                margin-bottom: 0.5rem; 
+                padding: 1rem;
+                border: 1px solid #a7a2a2;
+                border-radius: 5px;
+                font-family: inherit;
+            }
+
+            button {
+                margin: 0.5rem ;
+                padding: 0.3rem;
+                border-radius: 5px;
+                width: 160px;
+                border: 1px solid #ffffff;
+            }
+            select, input[type=range] { 
+                align-items: center; 
+                width: 200px;
+                margin: 0.6rem 0rem 0.6rem 0.6rem; 
+                padding: 0.3rem;
+                border: 1px solid #ffffff;
+                border-radius: 5px;
+            }
+
+            label { 
+                display: block; 
+                font-weight: 400;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo"><a href="#home">Top</a></div>
+            <ul class="nav-links" style="font-size: small;">
+                <li><a href="#gioi-cu-tuc-1"> Giới (1-9) </a></li>
+<!--                 <li><a href="#gioi-cu-tuc-10">Giới (10-19) </a></li>
+                <li><a href="#gioi-cu-tuc-20">Giới (20-25) </a></li> -->
+
+                <li><a href="#luat-nghi">    16 luật nghi</a></li>
+                <li><a href="#r32-phap">     32-Pháp</a></li>
+                <li><a href="#r4-tinh-can">   4-Tinh Cần</a></li>
+
+                <li><a href="#rtho-trai">   Thọ Trai</a></li>
+                <li><a href="#rnhap-that-1">  Nhập Thất</a></li>
+<!--                 <li><a href="#r100-gioi">   Chúng học</a></li> -->
+                <li><a href="#r7777">       Lời Phật Dạy</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<!-- Audio Player Section -->
+    <section id="home" class="audio-section">
+        <div class="container">
+            <div class="audio-player">
+                <h3 style="margin-bottom: 1rem;">🎵 Music Player : <span id="playname" style="font-size:0.7rem; color:#707ad1;">(05.Sep.2025)</span> </h3>
+                
+                <!-- Audio Element -->
+                <audio id="audioPlayer" preload="metadata">
+                    <source src="" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+
+                <!-- Audio Visualizer -->
+                <div class="audio-visualizer" id="visualizer">
+                    <!-- Visualizer bars will be generated by JavaScript -->
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+
+                <!-- Time Display -->
+                <div class="time-display">
+                    <span id="currentTime">0:00</span>
+                    <span id="duration">0:00</span>
+                </div>
+
+                <!-- Audio Controls -->
+                <div class="audio-controls">
+                    <button class="audio-btn" id="prevBtn">⏮️ Prev</button>
+                    <button class="audio-btn" id="nextBtn">⏭️ Next</button>
+                    <button class="audio-btn" id="stopBtn">⏹️ Stop</button>
+                    <button class="audio-btn" id="playPauseBtn">▶️ Play</button>
+                    <div class="volume-control">
+                        <label for="volumeSlider">🔊 </label>
+                        <input type="range" class="volume-slider" id="volumeSlider" min="5" max="100" step="5" value="50">
+                    </div>
+                </div>
+
+                <!-- File Upload -->
+                <div class="file-upload">
+                    <label for="audioFile" class="upload-btn">📁 Upload Audio File</label>
+                    <input type="file" id="audioFile" accept=".mp3,.wav,.ogg,audio/mpeg" multiple>
+                    <p id="playname2" style="margin-top: 0.7rem; opacity: 0.8; font-size: 0.7rem;">Supported formats: MP3, WAV, OGG, M4A ...</p>
+                </div>
+                <!-- Playlist -->
+                <div class="playlist" id="playlist">
+                    <h4 style="margin-bottom: 1rem;">Playlist:</h4>
+                    <!-- Playlist items will be generated here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- TOP : input text - text speech -->
+    <section class="hero">
+        <div class="container"> <hr><br>
+            <div id="installPrompt" style="font-size: small; text-align: center; color:yellow; display: none;">
+                <h3>Vietnamese TTS</h3>
+                <p><strong>Không tìm thấy giọng Tiếng Việt.</strong><br>
+                Vui lòng cài đặt gói ngôn ngữ Tiếng Việt trên thiết bị của bạn:</p>
+                <p style="font-size: small; text-align: left;">
+                <strong>Windows 10/11:</strong>  Cài đặt → Thời gian &amp; ngôn ngữ → Lời nói → Thêm giọng nói → Chọn “Tiếng Việt”<br>
+                <strong>macOS:        </strong>  Tùy chọn hệ thống → Nội dung đã nói → Giọng nói hệ thống → Tùy chỉnh → Tích chọn “An”, “Minh”…<br>
+                <strong>Android:      </strong>  Cài đặt → Hệ thống → Ngôn ngữ &amp; bàn phím → Trình đọc văn bản → Cài đặt ngôn ngữ → Tiếng Việt. <br>
+                        Sau khi cài, hãy tải lại trang để chọn giọng tự động.</p>
+            </div>
+
+            <div class="installPrompt" >
+                <span style="color: #81913e;"> Auto add text 
+                    <input type="checkbox" id="text-auto" name="text-auto" value="text-auto"> 
+                    <button id="text-clear" style="background-color: #4e53b8; border: none;">Clear Text Input</button></span>
+
+                <label for="text-input" style="text-align: left;">1-Nhập văn bản . .<span id="text-nhap"></span></label>
+                <textarea id="text-input" style="font-size: 15px;">
+*   Vị tỳ kheo nhờ giữ giới hạnh không làm những tà nghiệp không đúng hạnh nghiệp của người tu sĩ, 
+    nhờ đầy đủ giới hạnh luật nghi nên vị tỳ kheo ấy không thấy sợ hãi từ một phương diện nào của sự giữ gìn hộ trì giới luật.
+**  Vị tỳ kheo nhờ giữ giới hạnh không làm những tà nghiệp không đúng hạnh nghiệp của người tu sĩ, 
+    nhờ đầy đủ giới hạnh luật nghi nên vị tỳ kheo ấy không thấy sợ hãi từ một phương diện nào.
+*** Vị ấy nhờ giới hạnh luật nghi cao quý này nên hưởng thọ lạc, nội tâm thanh tịnh không còn si ám,
+     đó là tỳ kheo đầy đủ giới hạnh luật nghi. Vị ấy nhờ giới hạnh luật nghi cao quý này nên hưởng thọ lạc, 
+     nội tâm thanh tịnh không còn si ám, đó là tỳ kheo đầy đủ giới hạnh luật nghi.
+--  Giới hạnh này được xem như là sơ thiện, trung thiện nó là giới đức mà hậu thiện nó là giới tuệ.
+                </textarea>
+                <button id="speakBtn" class="btn">3-Phát âm</button>
+            </div>
+            <div class="installPrompt" >
+                <span id="mes-id" style="font-size: 13px;">2-Chọn giọng nói.</span>
+            </div>
+            <!--  <select id="voiceSelect">  <option value="">Auto (best match)</option>  </select> -->
+        </div> 
+    </section> <!-- home - hero -->
+
+    <section id="features" class="features">
+    <div class="container">
+        <p  class="features-card" style="text-align: center;"> 
+            <h2>Our Features <span style="font-size: 12px;">(15.sep.2025-v4.5)</span></h2>
+            <button><a href="#gioi-cu-tuc-1"> 25 giới (1 - 9)   </a></button>
+            <button><a href="#gioi-cu-tuc-10">25 giới (10 - 19) </a></button>
+            <button><a href="#gioi-cu-tuc-20">25 giới (20 - 25) </a></button>
+
+            <button><a href="#luat-nghi">    16 luật nghi       </a></button>
+            <button><a href="#r32-phap">    32-Pháp Thông Hiểu  </a></button> 
+            <button><a href="#r4-tinh-can"> 4-Có Tinh Cần       </a></button>
+            
+            <button><a href="#rtho-trai">       Thọ Trai     </a></button>
+            <button><a href="#rnhap-that-1">    Nhập Thất GĐ 1 </a></button>
+            <button><a href="#rnhap-that-2">    Nhập Thất GĐ 2 </a></button>
+            <button><a href="#rgioi-phan-biet">  Giới Phân biệt </a></button>
+            <button><a href="#r100-gioi">       100 chúng học   </a></button>
+            <button><a href="#r7777">           Lời Phật Dạy   </a></button> 
+        </p><br><hr>
+        <!-- Speech voice rate -->
+        <div class="tts-voice">
+            <label for="ttsVoice">2-Voice : <span id="voimess"></span>.
+            <select id="ttsVoice"> <option value="">Auto (best match)</option> </select></label>
+            
+            <label for="ttsRate">3-Speed : <span id="ttsRateValue"> 0.8x </span>
+                <input id="ttsRate" type="range" min="0.5" max="1.8" value="0.8" step="0.1"> </label>
+                <span id="choptext" style="font-size: 14px; color: #e2e6ea;"></span>
+            
+        </div>
+        
+        <div class="tts-controls" id="ttsControls">
+            <button class="tts-btn" id="ttsPlayBtn">▶️ Read</button>
+            <button class="tts-btn" id="ttsPauseBtn">⏸️ Pause</button>
+            <button class="tts-btn" id="ttsStopBtn">⏹️ Stop</button>
+        </div>
+        <hr>
+<!-- Layout features-grid -->
+        <div class="features-grid">
+            <div id="gioi-cu-tuc-1" class="feature-card">
+                <button class="card-tts" type="button">▶️ Read</button>
+                <div>
+                <h4>25 Giới Hạnh Cụ Túc:  1 - 5.</h4>
+                <ul>
+                    <li>
+                        “1, Vị tỳ kheo phải từ bỏ sát sanh, tránh xa sự sát sanh, bỏ trượng, bỏ kiếm, bỏ gươm đao, cung tên, súng đạn, dao rựa, mác, luôn luôn phải tu tập, 
+                        biết xấu hổ và sợ hãi trước những lỗi nhỏ nhặt sát sanh. Phải có lòng từ bi, sống phải thương xót đến tất cả hạnh phúc của chúng sanh và loài hữu tình. 
+                        như vậy là giới hạnh của vị tỳ kheo ấy, <b>thứ nhất</b> trong giới luật của đức Phật”.
+                    </li>
+                    <li>
+                        “2, Vị tỳ kheo phải từ bỏ lấy của không cho, chỉ lấy những vật đã cho, chỉ được mong những vật đã được cho, tự sống thanh tịnh ở hạnh tu này,
+                            luôn luôn giữ gìn không để mang tiếng trộm cắp. như vậy là giới hạnh của vị ấy <b>thứ hai</b> trong giới luật của đức Phật”.
+                    </li>
+                                                
+                    <li>
+                        “3, Vị tỳ kheo phải từ bỏ dâm dục, phải xa lánh sự dâm dục, luôn luôn tự sống tịnh hạnh trong sạch, trong ý không được mống khởi dâm dục. 
+                        như vậy là giới hạnh của vị ấy <b>thứ ba</b> trong giới luật của đức Phật”.
+                    </li>                        
+                    <li>
+                        “4, Vị tỳ kheo từ bỏ nói láo, tránh xa sự nói láo, phải luôn luôn nói lời chân thật, y chỉ trên sự thật mà nói, nói rất chắc chắn đáng tin cậy. 
+                        Không lường gạt, không phản lại lời nói. như vậy là giới hạnh của vị ấy <b>thứ tư</b> trong giới luật của đức Phật”.
+                    </li>                        
+                    <li>
+                        “5, Vị tỳ kheo từ bỏ nói lưỡi hai chiều, tránh xa nói hai chiều, nghe điều gì chỗ này không đến chỗ kia nói để sanh chia rẽ ở những người này, 
+                        nghe điều gì ở chỗ kia không đi nói với những người này để sanh chia rẽ với những người kia. Như vậy tỳ kheo ấy đang sống hòa hợp với những kẻ ly gián, 
+                        khuyến khích những kẻ hòa hợp, vui mừng trong sự hòa hợp, thoải mái trong sự hòa hợp, hân hoan trong sự hòa hợp, nói những lời đưa đến hòa hợp. 
+                        như vậy là giới hạnh của vị ấy <b>thứ năm</b> trong giới luật của đức Phật”.
+                    </li>
+                </ul></div>
+            </div>
+
+            <div id="gioi-cu-tuc-2" class="feature-card">
+                <button class="card-tts" type="button">▶️ Read</button>
+                <div> 6 - 9.
+                <ul>
+                    <li>
+                        “6, Vị tỳ kheo từ bỏ nói lời độc ác, tránh xa nói lời độc ác, vị ấy nói những lời không có lỗi lầm, đẹp tai, dễ thương, nhẹ nhàng, ôn tồn, nhã nhặn, 
+                        dễ cảm thông đến tâm của mọi người, luôn luôn có những lời tao nhã làm đẹp lòng người khác. Như vậy giới hạnh của vị ấy <b>thứ sáu</b> trong giới luật của đức Phật”.
+                    </li>                        
+                    <li>
+                        “7, vị tỳ kheo từ bỏ nói lời phù phiếm, tránh xa nói lời phù phiếm, phải nói đúng thời đúng lúc, nói những lời chân thật, nói những lời có ý nghĩa cao đẹp, 
+                        nói những lời về Chánh pháp, nói những lời về giới hạnh, giới đức, nói những lời đáng được ca ngợi, nói những lời hợp thời, hợp lý, hợp căn, hợp cơ, thuận lý, 
+                        có mạch lạc, có hệ thống, có ích lợi cho người cho mình. Như vậy là giới hạnh của vị ấy <b>thứ bảy</b> trong giới luật của đức Phật”.
+                    </li>                        
+                    <li>
+                        “8, Vị tỳ kheo từ bỏ làm hại các hạt giống và các loại cây cỏ thảo mộc, dùng ngày một bữa không ăn đêm, không ăn phi thời; từ bỏ, xa lánh ăn phi thời; 
+                        từ bỏ đi xem múa hát, ca nhạc kịch; từ bỏ trang sức bằng vòng hoa hương liệu, dầu thơm, xà bông thơm và các thời trang khác; từ bỏ không dùng giường cao rộng lớn; 
+                        từ bỏ tủ bàn ghế sang đẹp; từ bỏ nhận vàng bạc, tiền bạc, của báu; từ bỏ không nhận các hạt giống sống; từ bỏ không nhận thịt sống, thịt chín. <br>
+                        từ bỏ không nhận đàn bà, con gái; từ bỏ không nhận nô tì trai gái; từ bỏ không nhận cừu và dê; từ bỏ không nhận gia cầm và heo; từ bỏ không nhận voi, bò, ngựa, ngựa cái; 
+                        từ bỏ không nhận ruộng nương, đất đai; từ bỏ không nhận người môi giới hoặc tự mình làm môi giới; từ bỏ buôn bán các nghề thương mại; 
+                        từ bỏ gian lận bằng cân, bằng thước, bằng tiền bạc, hoặc bằng các dụng cụ đo lường khác; từ bỏ các tà hạnh như hối lộ, ăn lo, gian trá, lừa đảo; 
+                        từ bỏ làm tổn thương hoặc làm đau khổ chúng sanh, câu thúc, bức bách, bức đạp. Như vậy là giới hạnh của vị ấy <b>thứ tám</b> trong giới luật của đức Phật”.
+                    </li>                        
+                    <li>
+                        9, vị tỳ kheo không được trồng trọt tất cả các loại hạt giống, Và cũng không được làm hại những loại giống đó, Vì vị tỳ kheo chỉ dùng các món ăn do 
+                        tín thí cúng dường mà thôi. như vậy là giới hạnh của vị ấy <b>thứ chín</b> trong giới luật của đức Phật.
+                    </li>
+                </ul></div>
+            </div> <!-- cu tuc 1 -->
+            
+            <div id="gioi-cu-tuc-10" class="feature-card">
+                <button class="card-tts" type="button">▶️ Read</button>
+                <div> 10 - 14.
+                <ul>
+                    <li>
+                        10, Vị tỳ kheo mặc dù đã dùng các món ăn do tín thí cúng dường mà vẫn còn cất chứa và thọ hưởng các đồ vật như cất chứa các món ăn, cất chứa đồ ăn uống, 
+                        cất chứa vải, cất chứa xe cộ, cất chứa đồ nằm, cất chứa hương liệu, cất chứa các mỹ vị, như vậy không đúng giới hạnh. 
+                        Vị ấy phải từ bỏ cất chứa các vật trên. như vậy là giới hạnh của vị ấy <b>thứ mười</b> trong giới luật của đức Phật.
+                    </li>  
+                    <li>
+                        11, Vị tỳ kheo mặc dù đã dùng các món ăn do tín thí cúng dường mà vẫn còn sống theo các trò du hí không chơn chánh như múa, hát, ca nhạc kịch,
+                        ngâm vịnh, nhịp tay, nhịp chân, kệ tụng, ca ngâm í a í à, hoặc tụng kinh, tụng thần chú, tay bắt ấn, đánh trống lớn trống nhỏ, phèng la, 
+                        chập chả, đẩu, mõ, diễn tuồng thần tiên, mãi võ, đấu voi, đấu ngựa, đấu bò, đấu trâu, đấu dê, đấu cừu, đá gà, đá dế, đá chim cun cút, đấu gậy, 
+                        đấu côn, đấu quyền, đô vật, bắn súng, đấu gươm, thi bắn, tập dợt bắn, tập đánh giặc giã, tập thao dượt diễn binh. 
+                        Như vậy là giới hạnh của vị tu sĩ thứ <b>mười một</b> trong giới luật của đức Phật.
+                    </li>
+                    <li>
+                        12, Vị tỳ kheo mặc dù đã dùng các món ăn do tín thí cúng dường mà vẫn còn sống theo các trò chơi giải trí trong thế gian như cờ tướng, cờ gánh, cờ quân, 
+                        cờ vua, cờ tám hình vuông, cờ mười hình vuông, cờ chơi trên đất, cờ chơi cò nhảy ô, chơi bỏ khăn, chơi làm mù bịt mắt, chơi u, bắt mọi, chơi đánh gồng, 
+                        đánh trỏng, chơi u ấp, chơi nhảy dây cò cò, chơi bông vụ, chơi xúc xắc, chơi đá cầu, chơi bóng rổ, chơi đánh tennis, chơi đánh bóng, đá bóng, lội đua, 
+                        chạy đua, đạp xe đạp đua, chơi thổi kèn bằng lá cây, chơi lộn nhào như xiếc, chơi đánh đu, chơi búp bế, chơi xe điện tử, chơi chong chóng, bông vụ, chơi giấu, 
+                        chơi ú tim, chơi những xe tàu đồ chơi trẻ con, chơi cung tên súng giả, chơi đoán chữ viết trên lưng trên không, chơi bắt chước bộ điệu, chơi làm hề, vân vân... 
+                        Vị tỳ kheo phải từ bỏ các loại giải trí như trên. như vậy là giới hạnh của vị ấy thứ <b>mười hai</b>  trong giới luật của đức Phật.
+                    </li>
+                    <li>
+                        13, Vị tỳ kheo mặc dù đã dùng các món ăn do tín thí cúng dường mà vẫn còn sống dùng các giường cao rộng lớn, ghế bành, ghế trường kỷ, nệm trải giường bằng len, 
+                        trải giường bằng nệm cao su, nệm thông hơi, vải trải giường nhiều tấm nhiều màu, chăn len trắng, chăn len thêu bông, nệm bông, nệm thêu hình các con thú, 
+                        nệm bằng lông thú cả hai mặt, mền có đính ngọc, mền bằng lụa, khảm, mền có voi, mền ngựa, mền xe, mền bằng da sơn dương khâu lại, tấm thảm có lều che phía trên, ghế dài có gối đầu, 
+                        gối chân, gối ôm, có những màn, những màu sắc rực rỡ, nói chung là tất cả những đồ dùng trong nhà như xe cộ, ti vi, tủ lạnh, tủ giặt, máy móc vi tính, cát sét thu băng, 
+                        điện thoại, ra đi ô, vân vân.. <br>Vị tỳ kheo phải từ bỏ không dùng những vật vừa kể trên. Như vậy là giới hạnh của vị ấy thứ <b>mười ba</b> trong giới luật của đức Phật.
+                    </li>
+                    <li>
+                        14, Vị tỳ kheo mặc dù đã dùng các món ăn do tín thí cúng dường mà cũng vẫn còn dùng các đồ trang sức mỹ phẩm làm đẹp người như thoa dầu đấm bóp, tắm giặt làm cho thơm tho đẹp đẽ, 
+                        hoặc đập tay, đập chân, tập luyện làm cho mềm tay, mềm chân, mềm mại. Làm cho mềm mại, dẻo dai, uốn éo hoặc dùng gương soi, kem đánh mặt, vòng hoa, chuỗi hạt, phấn son, phấn mặt, 
+                        sáp mặt, vòng tay, tóc giả trên đầu, gậy cầm tay, xà quéo, gươm, lọng, dù, dép, thêu khăn đầu, mũ, nón, phất trần vải trắng có viền tua dài và còn nhiều thứ khác nữa. 
+                        Vị tỳ kheo không được dùng các thứ như vậy. như vậy gọi là giới hạnh của vị ấy thứ <b>mười bốn</b> trong giới luật của đức Phật.
+                    </li>
+                </ul></div>
+            </div>  <!-- 14 -->
+                                
+            <div id="gioi-cu-tuc-15" class="feature-card">
+                <button class="card-tts" type="button">▶️ Read</button>
+                <div> 15 - 19.
+                <ul><li>
+                        15, Vị tỳ kheo mặc dù đã dùng các món ăn do tín thí cúng dường mà không sống thầm lặng, độc cư cứ thường hay nói những câu chuyện vô ích, tầm thường. Như câu chuyện nói về vua chúa; 
+                        câu chuyện nói về ăn trộm; câu chuyện nói về đại thần; câu chuyện nói về binh lính; câu chuyện nói về sự hãi hùng; câu chuyện nói về chiến tranh; câu chuyện nói về đồ ăn uống; 
+                        câu chuyện nói về vải mặc; câu chuyện nói về máy móc; câu chuyện nói về khoa học; câu chuyện nói về tôn giáo; câu chuyện nói về thầy này thầy kia; câu chuyện nói về giáo hội; 
+                        câu chuyện nói về giường nằm; câu chuyện nói về vòng hoa; câu chuyện nói về hương liệu; câu chuyện nói về bà con; câu chuyện nói về xe cộ; câu chuyện nói về tai nạn lưu thông; <br> 
+                        câu chuyện nói về làng xóm; câu chuyện nói về thị tứ; câu chuyện nói về thành phố; câu chuyện nói về thế giới; câu chuyện nói về đàn bà đàn ông; 
+                        câu chuyện nói về anh hùng, vị anh hùng này vị anh hùng khác; câu chuyện nói bên lề đường; câu chuyện tại chỗ giếng nước; câu chuyện về người chết thế này thế khác; 
+                        câu chuyện tạp thoại, huyền thoại; câu chuyện biến trạng của trái đất; câu chuyện biến trạng của đại dương; câu chuyện về hiện hữu và không hiện hữu; vân vân... 
+                        Vị tỳ kheo ấy phải từ bỏ xa lìa không nói những chuyện vô ích tầm thường vừa kể ở trên. như vậy là giới hạnh của vị ấy thứ <b>mười lăm</b> trong giới luật của đức Phật.
+                    </li>
+                    <li>
+                        16, Vị tỳ kheo mặc dù sống đã dùng các món ăn do tín thí cúng dường mà vẫn còn sống bàn luận tranh chấp, kiến chấp tà kiến, tranh luận về thiền, 
+                        tranh luận về kinh Đại Thừa Tiểu Thừa, tranh luận về kiến giải tưởng giải, tranh luận về giới luật học, tranh luận về luận Trung quán A tì đàm, 
+                        Thanh tịnh đạo luận, tranh luận về trí Bát Nhã, tranh luận về Phật tánh, vân vân... Vị tỳ kheo ấy phải từ bỏ, xa lánh những cuộc tranh luận, 
+                        tranh chấp kể trên. như vậy là giới hạnh của vị ấy thứ <b>mười sáu</b> trong giới luật của đức Phật.
+                    </li>
+                    <li>
+                        17, Vị tỳ kheo mặc dù đã sống dùng các món ăn do tín thí cúng dường mà vẫn còn sống đưa các tin tức người này người kia, hoặc tự đứng ra làm môi giới, 
+                        thuyết khách cho vua chúa, cho các vị đại thần, bàn mưu tính kế quốc sự quốc dân, làm mai dong môi giới bán nhà bán ruộng bán đất, môi giới buôn bán, 
+                        môi giới trai gái, môi giới làm ăn chạy áp phe áp pháo để kiếm danh kiếm lợi thêm. Vị tỳ kheo ấy phải từ bỏ, xa lìa đưa tin làm môi giới như trên, 
+                        vậy là giới hạnh của vị ấy thứ <b>mười bảy</b> trong giới luật của đức Phật.
+                    </li>  
+                    <li>
+                        18, Vị tỳ kheo mặc dù đã dùng các món ăn do tín thí cúng dường vẫn còn sống lừa đảo, nói lời xiểm nịnh, gợi ý dèm pha cầu lợi, vị ấy phải từ bỏ, 
+                        viễn ly lời nói lừa đảo, xiểm nịnh như trên. như vậy là giới hạnh của vị ấy thứ <b>mười tám</b> trong giới luật của đức Phật.
+                    </li>
+                    <li>
+                        19, Vị tỳ kheo mặc dù dùng các món ăn do tín thí cúng dường vẫn còn tự nuôi sống bằng những tà hạnh, tà nghiệp như xem tướng, coi tay, chiêm tinh, tuổi tác, 
+                        tướng mạo, triệu tướng, mộng tướng, thân tướng, dấu chuột cắn, cúng bái, tế lửa, tế núi, tế sông, tế vỏ lúa, tế tấm, gạo, muối, tế thực tô, tế thực phẩm, tế máu. 
+                        Khoa xem tay, xem nốt ruồi, Khoa xem địa lý, khoa xem mộng, khoa cầu thần ban phước, khoa cầu quỷ ma, yếm đối trùng tang, yếm đối ma quỷ thần trùng, Yếm đối nhà cửa mả mồ,<br> 
+                        dùng khoa trị rắn thuốc rắn, dùng khoa thuốc độc khoa trị bò cạp đoán số mạng cầu khẩn ngăn ngừa tai nạn, khoa biết chim nói chuyện. 
+                        Vị tỳ kheo ấy phải tránh xa từ bỏ tà hạnh nghiệp đã kể trên. như vậy là giới hạnh của vị ấy thứ <b>mười chín</b> trong giới luật của đức Phật.
+                    </li>
+                </ul></div>
+            </div> <!-- cu tuc 19 -->
+
+            <div id="gioi-cu-tuc-20" class="feature-card">
+                <button class="card-tts" type="button">▶️ Read</button>
+                <div> 20 - 25.
+                <ul> <li>
+                        20, Vị tỳ kheo mặc dù đã dùng các món ăn do tín thí cúng dường vẫn còn nuôi sống bằng những tà nghiệp như làm nghề xem ngọc báu, xem tướng que gậy, 
+                        xem tướng áo quần, xem tướng gươm kiếm, xem tướng mũi tên, xem tướng cây cung, xem tướng võ khí, xem tướng đàn bà, xem tướng đàn ông, xem tướng thiếu niên, 
+                        thiếu nữ, tướng đầy tớ nam, tướng đầy tớ nữ, tướng voi, tướng ngựa, tướng bò đực, tướng bò cái, tướng dê, tướng cừu, tướng gia cầm, tướng chim cun cút, 
+                        tướng con tắc kè, tướng vật tai dài. Như vậy là giới hạnh của vị ấy thứ <b>hai mươi</b> trong giới luật của đức Phật. 
+                    </li>
+                    <li>
+                        21, Vị tỳ kheo mặc dù đã dùng món ăn do tín thí cúng dường mà vẫn còn nuôi sống bằng những tà nghiệp như đoán trước vua sẽ tiến quân, vua sẽ lui quân, vua bản xứ sẽ tấn công, 
+                        vua ngoại bang sẽ triệt thoái, vua bản xứ thắng trận, vua ngoại bang thất trận, vua bản xứ bại trận, vua ngoại bang thắng trận, như vậy sẽ có sự thắng bại, 
+                        sẽ có sự thắng trận cho phe bên này, sẽ có sự bại trận cho phe bên kia. Vị tỳ kheo này phải từ bỏ, từ giã những tà nghiệp như kể trên. 
+                        Như vậy là giới hạnh của vị tỳ kheo thứ <b>hai mươi mốt</b> trong giới luật của đức Phật.
+                    </li>
+                    <li>
+                        22, Vị tỳ kheo mặc dù đã dùng món ăn do tín thí cúng dường mà vẫn còn tự nuôi sống bằng những tà nghiệp như đoán trước sẽ có nguyệt thực, sẽ có nhật thực, 
+                        sẽ có tinh thực, mặt trăng mặt trời sẽ đi đúng chánh đạo, mặt trăng mặt trời sẽ đi ngoài chánh đạo, sẽ có sao băng, các tinh tú sẽ đi đúng chánh đạo, 
+                        các tinh tú sẽ đi ngoài chánh đạo, sẽ có sao băng, sẽ có lửa cháy, phương hướng sẽ có động đất, sẽ có sấm sét, mặt trăng, mặt trời, các vì sao sẽ mọc, 
+                        sẽ lặn, sẽ mờ, sẽ sáng, nguyệt thực sẽ có kết quả như thế này, nhật thực sẽ có kết quả như thế kia. Những điều trên đây vị tỳ kheo cần phải tránh xa, cần phải từ bỏ,
+                        không được lấy những nghề nghiệp này nuôi sống tà mạng. Như vậy là giới hạnh của vị tỳ kheo thứ <b>hai mươi hai</b> trong giới luật của đạo Phật.
+                    </li>
+                    <li>
+                        23, Vị tỳ kheo mặc dù đã dùng các món ăn do tín thí cúng dường mà vẫn còn tự nuôi sống bằng những tà nghiệp như đoán trước sẽ có mưa nhiều, sẽ có đại hạn, sẽ có được mùa, 
+                        sẽ mất mùa, sẽ được an ổn, sẽ bị bệnh, bị hiểm họa, sẽ có những bệnh ôn dịch, sẽ có bệnh này bệnh khác, hay làm nghề như đếm trên ngón tay, tính số, đoán quẻ âm dương, 
+                        kế toán, làm sổ sách, làm thư ký, làm theo các nghề của thường tình thế gian. Vị tỳ kheo cần phải tránh xa, từ bỏ tà nghiệp như kể trên.
+                        như vậy là giới hạnh của vị ấy thứ <b>hai mươi ba</b> trong giới luật của đức Phật.
+                    </li>
+                    <li>
+                        24, Vị tỳ kheo mặc dù đã dùng các món ăn do tín thí cúng dường mà vẫn còn tự mình nuôi sống bằng những tà nghiệp như chọn ngày lành để rước dâu hay rể về nhà, 
+                        chọn ngày lành để đưa dâu hay rể, lựa ngày giờ tốt xấu để hòa giải, để đi thưa kiện, lựa ngày giờ tốt xấu để chia rẽ, lựa ngày giờ tốt xấu để đòi nợ, 
+                        lựa ngày giờ tốt xấu để cho mượn, cho vay tiền tiêu tiền, lựa ngày giờ tốt xấu để mà xuất hành, nhập gia, ăn tân gia, lựa ngày giờ tốt xấu đi buôn, 
+                        đi kiện thưa tụng gởi, lựa ngày giờ tốt xấu an táng trừ linh trừ thần... <br>Dùng bùa chú để giúp đỡ người buôn bán, làm ăn may mắn, dùng bùa chú để khiến người gặp tai nạn rủi ro,
+                        dùng bùa chú yếm nhà cửa, phá thai, dùng bùa chú khiến cho người ta cóng lưỡi, khiến cho quai hàm cử động, khiến cho tay chân múa men nhảy nhót như điên khùng, 
+                        dùng bùa chú khiến người đưa tay lên xuống, dùng bùa chú khiến người bị điếc, dùng bùa chú hỏi gương, dùng bùa chú hỏi đồng cốt thiếu nữ, hỏi tà ma, hỏi quỉ thần về tật bệnh, 
+                        về tai nạn của con người, dùng bùa chú đi hỏi thần thiên thần để biết họa phước, thờ thần mặt trời, thần đất, thần núi, thần lửa, 
+                        thần tài và cầu si ri thần tài để mang đến tài lợi cho gia chủ. Vị tỳ kheo cần phải tránh xa từ bỏ những nghề nghiệp không chơn chánh ở trên.
+                        như vậy là giới hạnh của vị ấy thứ <b>hai mươi bốn</b> trong giới luật của đức Phật.
+                    </li>
+                    <li>
+                        25, Vị tỳ kheo mặc dù đã dùng các món ăn do tín thí cúng dường mà vẫn tự nuôi sống bằng tà nghiệp như dùng chú thuật để gạt người, để tìm đất tốt làm nhà, 
+                        để cầu phước cho nhà mới, làm lễ cúng bái, làm lễ tắm, lễ hy sinh, làm thuốc nôn mửa, làm thuốc bài tiết xổ, tẩy tịnh trong đầu, thoa dầu trong lỗ tai lỗ mũi, 
+                        nhỏ mắt lỗ tai lỗ mũi, chữa mắt chữa tai chữa mũi, làm thầy thuốc, thầy mổ xẻ, thầy chữa bệnh con nít, làm thầy thuốc nam cho uống bằng rễ cây lá cây... <br>
+                        Vị tỳ kheo cần phải tránh xa, từ bỏ những tà nghiệp không chơn chánh đối với người tu sĩ đạo Phật. như vậy là giới hạnh của vị ấy thứ <b>hai mươi lăm</b> trong giới luật của đức Phật.
+                    </li>
+                </ul> </div> <b>(hết 25 giới cụ túc)</b>
+                <div><br>
+                    <b>*</b> Vị tỳ kheo nhờ giữ giới hạnh không làm những tà nghiệp không đúng hạnh nghiệp của người tu sĩ, 
+                                nhờ đầy đủ giới hạnh luật nghi nên vị tỳ kheo ấy không thấy sợ hãi từ một phương diện nào của sự giữ gìn hộ trì giới luật.<br>
+                    <b>*</b> Vị tỳ kheo nhờ giữ giới hạnh không làm những tà nghiệp không đúng hạnh nghiệp của người tu sĩ, nhờ đầy đủ giới hạnh 
+                                luật nghi nên vị tỳ kheo ấy không thấy sợ hãi từ một phương diện nào.<br>
+                    <b>*</b> Vị ấy nhờ giới hạnh luật nghi cao quý này nên hưởng thọ lạc, nội tâm thanh tịnh không còn si ám, đó là tỳ kheo đầy đủ giới hạnh luật nghi. 
+                                Vị ấy nhờ giới hạnh luật nghi cao quý này nên hưởng thọ lạc, nội tâm thanh tịnh không còn si ám, đó là tỳ kheo đầy đủ giới hạnh luật nghi.<br>
+                    <b>-</b> Giới hạnh này được xem như là sơ thiện, trung thiện nó là giới đức mà hậu thiện nó là giới tuệ.<br>
+                </div>
+            </div> <!-- cu tuc 25 -->
+<!-- 16 Luat Nghi -->
+        <div id="luat-nghi" class="feature-card">
+            <button class="card-tts" type="button">▶️ Read</button>
+            <div><h4>16 Luật nghi.</h4>
+                <ul> 
+                    <li>
+                    Một, “trong giáo pháp của ta không có người tu sĩ mong cầu, cất chứa nhiều y phục và đồ ăn uống”.
+                </li><br>
+                <li> 
+                    hai, “Trong giáo pháp ta không có người tu sĩ kinh doanh buôn bán hoặc gieo trồng các loại cây”.
+                </li><br>
+                <li> 
+                    Ba, “Trong giáo pháp của ta không có người tu sĩ dùng nhiều phương tiện cầu lợi, cầu lợi dưỡng cho mình, dùng ngà voi 
+                    và những loại báu khác để làm giường cao rộng lớn, gối êm nệm ấm, chăn ấm thêu màu rực rỡ”.
+                </li><br>
+                <li> 
+                    Bốn, “trong giáo pháp ta không có người tu sĩ hay trang sức thân mình, tô thoa ướp bằng dầu thơm, tắm gội bằng nước thơm, 
+                    hương bột rắc khắp mình, chải đầu với dầu thơm, mang tràng hoa đẹp, soi gương, thoa phấn, đi giày thêu, mặc quần áo thuần một màu trắng, 
+                    dao gậy luôn luôn đeo bên mình, đi có lọng che, tay cầm quạt, sửa soạn xe cộ lộng lẫy”.
+                </li><br>
+                <li> 
+                    Năm, “trong giáo pháp của ta không có người tu sĩ ham thích vui chơi bằng những trò chơi giải trí vui đùa khác”.
+                </li><br>
+                <li> 
+                    sáu, “Trong giáo pháp của ta không có người tu sĩ thường nói những lời vô ích chướng ngăn Thánh đạo”.
+                </li><br>
+                <li> 
+                    Bảy, “trong giáo pháp của ta không có những người tu sĩ trau chuốt văn chương, lời hay ý đẹp hoặc làm ra vẻ nghiêm trang chê bai người khác lấy lợi, cầu lợi”.
+                </li><br>
+                <li> 
+                    Tám, “trong giáo pháp của ta không có người tu sĩ cùng nhau tranh tụng hoặc ở bất cứ nơi đâu cũng tranh nhau, cãi nhau các chuyện thị phi: 
+                    Ta là người biết rõ kinh luật còn ngươi thì không biết rõ gì cả. Ta hướng về chánh đạo còn ngươi hướng về tà đạo, lấy trước nói sau, 
+                    lấy sau nói trước. Ta đủ sức nhẫn nhục, còn ngươi thì không đủ sức nhẫn nhục”.
+                </li><br>
+                <li> 
+                    Chín, “trong giáo pháp của ta không có người tu sĩ làm sứ giả thông tin đây kia, tự mình làm hoặc bảo người khác làm môi giới”.
+                </li><br>
+                <li> 
+                    Mười, “trong giáo pháp của ta không có người tu sĩ tập luyện đao kiếm, cung tên, hoặc đá gà, đua ngựa, 
+                    hoặc phe nam phe nữ đấu nhau, hoặc trỗi lên không ngớt những tiếng nhạc, tiếng cười đùa, vui hát”.
+                </li><br>
+                <li> 
+                    Mười một, “trong giáo pháp của ta không có người tu sĩ làm những việc tà mạng, ngăn ngại đạo pháp để tự sinh sống như xem tướng lành, 
+                    tướng dữ, tướng tốt, tướng xấu của con trai, con gái để mong cầu lợi dưỡng”.
+                </li><br>
+                <li> 
+                    Mười hai, “trong giáo pháp của ta không có người tu sĩ làm những việc nuôi tà mạng, ngăn ngại đạo là để tự sinh sống như kêu gọi quỷ thần, 
+                    thực hiện các loại bùa chú trù yểm, dùng chú thuật thực hành khổ hạnh để cầu mong danh lợi”.
+                </li><br>
+                <li> 
+                    Mười ba, “trong giáo pháp của ta không có những người tu sĩ làm những điều tà nghiệp ngăn ngại đạo để tự sinh sống như đọc thần chú để 
+                    chữa bệnh hoặc đọc chú làm thuốc thang, châm chích trị liệu, điểm huyệt các bệnh hoặc tụng kinh, đọc chú, cầu cúng, cầu siêu, cầu an”.
+                </li><br>
+                <li> 
+                    Mười bốn, “trong giáo pháp của ta không có những người tu sĩ làm những điều tà mạng ngăn ngại đạo để 
+                    tự sinh sống như tụng chú cầu nước, cầu mưa, cầu quỷ thần nhập”.
+                </li><br>
+                <li> 
+                    Mười lăm, “trong giáo pháp của ta không có những tu sĩ làm những điều tà nghiệp, ngăn ngại đạo pháp để tự sinh sống như đoán xem 
+                    thời tiết có mưa hay không mưa, được mùa hay mất mùa, điều lành điều dữ, coi ngày tốt xấu cưới vợ gả con, cất nhà cất cửa, xem mồ xem mả, coi sao coi hạn”.
+                </li><br>
+                <li> 
+                    Mười sáu, “trong giáo pháp của ta không có những người tu sĩ làm những việc tà nghiệp, ngăn ngại đạo để tự sinh sống như vậy, 
+                    trái lại những người tu sĩ ấy phải chuyên tu theo đúng Thánh giới, không có tâm nhiễm trước, bên trong giữ tâm hỷ lạc, mắt thấy sắc 
+                    không chấp tướng và không bị sắc ràng buộc, kiên cố vắng lặng độc cư, không có tham đắm”.
+                </li><br>
+
+                <b>*</b> “Trong đạo pháp của ta: người tu sĩ chỉ ăn vừa đủ, đầu đêm cuối đêm siêng năng giác tỉnh và trọn ngày nếu đi hoặc ngồi thường tỉnh giác 
+                        nhất tâm để trừ các ấm cái. Nửa đêm nằm nghiêng phía bên tay mặt và nhớ thức dậy đúng giờ, giữ gìn tư tưởng luôn luôn trong sáng, tâm không rối loạn. 
+                        Đến cuối đêm liền thức dậy tư duy, hoặc đi, hoặc ngồi thường đặt niệm nhất tâm để trừ các ấm cái. Tỳ kheo có đầy đủ Thánh giới như vậy nên được Thánh căn 
+                        chỉ ăn vừa đủ, đầu đêm cuối đêm tinh tấn giác tỉnh thường niệm nhất tâm không có tán loạn". <br> <br>
+                <b>**</b> Thế nào là tỳ kheo niệm không tán loạn? Tỳ kheo quán thân trong thân tinh cần không giải đãi, ghi nhớ không quên để trừ bỏ tham ưu ở đời; 
+                        quán ngoại thân, quán trong thân, quán hoài và hoài, tinh cần không giải đãi, ghi nhớ không quên để trừ bỏ các tham ưu ở đời. Quán thọ, 
+                        quán tâm và quán pháp cũng như vậy. Đây là trụ tâm nhơn tướng, trụ tâm trên nhơn tướng, tu như vậy tỳ kheo niệm không tán loạn”. <br>
+            </ul></div>
+        </div> <!-- luat nghi -->
+
+        <div id="r32-phap" class="feature-card">
+            <button class="card-tts" type="button">▶️ Read <span style="font-size: 0.7rem;"> Băng-48 </span> </button>
+            <div><h4>32 Pháp Cần Thông Hiểu.</h4>
+            <p> <b>MỘT PHÁP,</b><br>
+                    A, Tất cả các loài hữu tình do các món ăn mà được an trú.<br>
+                    B, Tất cả các loài hữu tình do các hành mà an trú.<br>
+                <b>HAI PHÁP,</b><br>
+                    1-Danh và sắc.. 2-Vô minh và Hữu.. <br>
+                    3-Hữu kiến và Vô hữu kiến.. 4-Vô tàm và Vô quý.. <br>
+                    5-Tàm và quý.. 6-Ác ngôn và ác hữu..<br>
+                    7-Thiện ngôn và thiện hữu.. <br>
+                    8-Nhập tội thiện xảo và xuất tội thiện xảo.. <br>
+                    9-Giới thiện xảo và tác ý thiện xảo..<br>
+                    10-Xứ thiện xảo, duyên khởi thiện xảo.. <br>
+                    12-Chơn trực và tàm quý.. <br>
+                    13-Kham nhẫn và nhu hòa.. <br>
+                    14-Lời nói nhu thuận và tiếp đón thân tình..<br>
+                    15-Vô hại và Từ ái.. <br>
+                    16-Thất niệm và Bất chánh tri.. <br>
+                    17-Chánh niệm tỉnh giác..<br>
+                    18-Các căn không được chế ngự và ăn uống không được tiết độ..<br>
+                    19-Các căn được chế ngự và ăn uống thì được tiết độ.. <br>
+                    20-Tư duy lực và tu tập lực.. <br>
+                    22-Chỉ và quán.. <br>
+                    23-Chỉ tướng và tinh cần tướng..<br>
+                    24-Tinh cần và không dao động.. <br>
+                    25-Giới thành tựu và kiến thành tựu.. <br>
+                    26-Giới suy khuyết và kiến suy khuyết..<br>
+                    29-Dao động đối với các pháp bị dao động và tinh cần của người bị dao động.. <br>
+                    30-Không tri túc với các pháp thiện và không thối thất trong sự tinh cần..<br>
+                    31-Minh và giải thoát.. <br>
+                    32-Tận trí và Vô sinh trí - (Hết)
+            </p></div>
+        </div> <!-- r32-phap -->
+
+        <div id="r4-tinh-can" class="feature-card">
+            <button class="card-tts" type="button">▶️ Read</button>
+            <div>
+                <h4> BỐN TINH CẦN, </h4>
+                <p style="color: #064d1d;">
+                    1- Tinh cần chế ngự,<br>
+                    2- Tinh cần đoạn tận,<br>
+                    3- Tinh cần tu tập,<br>
+                    4- Tinh cần hộ trì.<br>
+                </p> <br><hr>
+                <h4> BỐN CHÁNH CẦN, </h4>
+                <p style="color: #0b28ac;">
+                    1-	Phòng hộ 6 căn,<br>
+                    2-	Cánh niệm tỉnh giác,<br>
+                    3-	Tiết độ ăn uống,<br>
+                    4-	Thiểu dục tri túc.<br>
+                </p> <br><hr>
+                <p> 3 Đức, <br>
+                    <b>Nhẫn Nhục - Tùy Thuận - Bằng Lòng. </b>
+                </p> <br><hr>
+                <p> 3 Hạnh, <br>
+                    <b>Ăn - Ngủ - Độc Cư. </b>
+                </p> <br><hr><br>
+                <p><b> Khi Nào Nhập Thất Tu Tập. </b><br>
+                        1-  Vị ấy thành tựu <b>Thánh giới uẩn</b>. <br>
+                        2- Thành tựu Thánh <b>hộ trì các căn</b>.<br>
+                        3-  Thành tựu Thánh <b>chánh niệm tỉnh giác</b>.<br>
+                        4-  Lựa một <b>trú xứ thanh vắng</b>, như khu rừng, gốc cây, khe núi, hang đá, bãi tha ma, 
+                            lùm cây ngoài trời, đống rơm... đặt niệm trước mặt.
+                </p> <br><hr>                
+                <br>
+            </div>
+            <img src="250gioitykheo.png" alt="250 Giới tì kheo" loading="lazy">
+        </div> <!-- 4 tinh-can -->
+
+            <div id="rtho-trai" class="feature-card">
+                <button class="card-tts" type="button">▶️ Read</button>
+                <div>
+                    <h4> NGHI THỨC THỌ TRAI. </h4>
+                    <b> BÀI THỨ NHẤT, </b>Tân tỳ kheo khi thọ nhận thực phẩm (Thầm đọc bài).
+                    <p style="color: blue;">
+                        Hôm nay con thọ nhận <br>
+                        Của tín thí cúng dường. <br>
+                        Ước nguyện con tu tập <br>
+                        Giới hạnh tròn nghiêm túc. <br>
+                        Không hề vi phạm lỗi <br>
+                        Tâm ly dục ly ác. <br>
+                        Không làm khổ mình, người <br>
+                        Xứng đáng đệ tử Phật. <br>
+                        Gương sáng cho mọi người <br>
+                        Thắp lên ngọn đèn pháp. <br>
+                        Chấn hưng nền Phật đạo <br>
+                        Con xin Phật chứng minh. <br>
+                        Nam Mô Bổn Sư Thích Ca Mâu Ni. <br>
+                    </p> <br><hr>
+                    <h4> BÀI THỨ HAI, </h4> Cựu tỳ kheo khi thọ nhận thực phẩm (Thầm đọc bài).
+                    <p style="color: rgb(9, 100, 47);">
+                        Hôm nay con thọ nhận <br>
+                        Của tín thí cúng dường. <br>
+                        Ước nguyện con hồi hướng <br>
+                        Cho tất cả mọi người. <br>
+                        Đều được hưởng như con <br>
+                        Giới luật tròn thanh tịnh .<br>
+                        Không hề vi phạm lỗi <br>
+                        Thường lìa dục lìa ác <br>
+                        Suốt thời gian tu hành. <br>
+                        Không làm khổ mình, người <br>
+                        Xứng đáng đệ tử Phật. <br>
+                        Gương đức giới mọi ngwời <br>
+                        Thắp lên ngọn chánh pháp. <br>
+                        Chấn hưng lại Phật giáo <br>
+                        Ngưỡng xin Phật chứng minh. <br>
+                        Nam Mô Bổn Sư Thích Ca Mâu Ni. <br>
+                    </p> <br><hr>
+                    <h4> BÀI THỨ BA, </h4> Cựu tỳ kheo khi thọ nhận thực phẩm (Thầm đọc bài).
+                    <p style="color: rgb(73, 6, 94);">
+                        Hôm nay bữa cơm này <br>
+                        Chúng con xin thành kính. <br>
+                        Dâng lên mười phương Phật <br>
+                        Ba đời chư Hiền Thánh. <br>
+                        Tổ tiên và ông bà <br>
+                        Cha mẹ và quyến thuộc. <br>
+                        Anh em cùng bạn hữu <br>
+                        Nội ngoại cùng đôi bên. <br>
+                        Nhiều đời vô lượng kiếp <br>
+                        Chúng con cũng cúi xin .<br>
+                        Dâng lên khắp pháp giới <br>
+                        Chúng sanh và tất cả .<br>
+                        Hữu tình và vô tình <br>
+                        Đều được hưởng cơm này. <br>
+                        No lòng như chúng con <br>
+                        Để rồi quyết chí tu. <br>
+                        Giải trừ tâm ác độc <br>
+                        Tăng trưởng hạnh từ bi. <br>
+                        Thương xót khắp quần sanh <br>
+                        Thể hiện pháp thiền định. <br>
+                        Ra khỏi nhà sanh tử <br>
+                        Làm chủ đường luân hồi. <br>
+                        Báo pháp bốn trọng ân <br>
+                        Giữ gìn ngôi Tam Bảo. <br>
+                        Cửu trụ mãi muôn đời <br>
+                        Nam Mô Bổn Sư Thích Ca Mâu Ni. <br>
+                    </p><br><hr><br>
+                </div> 
+            </div><!-- bai 1 2 3-->
+            <div id="rtho-trai-2" class="feature-card">
+                <button class="card-tts" type="button">▶️ Read</button>
+                <div>
+                    <h4> BÀI THỨ TƯ, </h4> 
+                    <b>Lời Nhắc Nhở</b>: Sau khi đọc bài ước nguyện thọ trai xong, người chủ lễ chắp tay đọc bài.
+                    <p style="color: rgb(78, 43, 3);">
+                        Phật dạy người tu sĩ <br>
+                        Trước khi vào bữa ăn <br>
+                        Phải nhớ năm pháp quán <br>
+                        Đừng để tâm đắm nhiễm <br>
+                        Vì đắm nhiễm khó tiêu <br>
+                        Tâm thường sinh tán loại <br>
+                        Lời nói chẳng nghiêm trang <br>
+                        Thiền định khó thu nhiếp <br>
+                        Nên phải nhớ <br>
+                        Ăn để sống <br>
+                        Sống để chuyên tu hành <br>
+                        Nhờ thế tâm thanh tịnh <br>
+                        Nên mỗi khi nghe tiếng chuông <br>
+                        Người tu sĩ nhiếp tâm bất động <br>
+                        Nam Mô Bổn Sư Thích Ca Mâu Ni. <br>
+                    </p><br>
+                    <b>Năm pháp quán như sau:</b>
+                    <p>
+                        <b>1.</b> Quán xét công ơn người đàn na thí chủ rất nặng. Làm ra thự phẩm bằng mồ hôi nước
+                            mắt, bao nhiêu công khó khổ để cúng dường.<br> 
+                        <b>2.</b> Quán xét giới luật mình có gìn giữ nghiêm chỉnh hay chưa? Nếu còn phạm giới có
+                            xứng đáng thọ nhận sự cúng dường đó chưa? <br>
+                        <b>3.</b> Quán xét công đức tu hành ly dục ly ác pháp của mình có xứng đáng thọ dụng của
+                            đàn na thí chủ chưa?<br>
+                        <b>4.</b> Quán xét thực phẩm bất tịnh mình có nhàm chán hay chưa? Nếu đã có tâm nhàm
+                            chán thì mới xứng đáng thọ dụng của đàn na thí chủ.<br>
+                        <b>5.</b> Quán xét đời sống thiểu dục tri túc, minh hạnh của mình có trọn vẹn chưa? Nếu xét
+                            thấy đời sống của mình thiểu dục tri túc và oai nghi chánh hạnh đầy đủ thì xứng đáng
+                            thọ dụng của đàn na thí chủ.<br>
+                    </p><br><hr>
+                    <h4> BÀI THỨ NĂM, </h4> BA MIẾNG CƠM ƯỚC NGUYỆN.
+                    Sau khi đọc Lời nhắc nhở xong, người tu sĩ bắt đầu ăn.
+                    <p style="color: rgb(9, 100, 47);">
+                        * Miếng cơm thứ nhất: Ước nguyện tâm ngăn ác, diệt ác pháp. <br>
+                        * Miếng cơm thứ hai: Ước nguyện sanh thiện, tăng trưởng thiện pháp. <br>
+                        * Miếng cơm thứ ba: Ước nguyện tất cả chúng sanh đều lý dục, ly ác pháp, không làm khổ
+                          mình, khổ người và khổ tất cả chúng sanh. 
+                    </p><br><hr>
+                </div>
+            </div>  <!-- tho trai 4 5 -->
+            <div id="rtho-trai-6" class="feature-card">
+                <button class="card-tts" type="button">▶️ Read</button>                                   
+                <div>
+                    <h4> BÀI THỨ SÁU, </h4> ƯỚC NGUYỆN SAU KHI THỌ TRAI.
+                    <p style="color: rgb(79, 7, 212);">
+                    Nguyện thọ bữa cơm này <br>
+                    Chúng con mãi nhớ ơn. <br>
+                    Người nông phu khó khổ <br>
+                    Kẻ dệt cửi nhọc nhằn. <br>
+                    Giọt mồ hôi nước mắt <br>
+                    Làm ra của cúng dường. <br>
+                    Người đàn na thí chủ <br>
+                    Vì Phật pháp trường tồn. <br>
+                    Chẳng nề công khó khổ <br>
+                    Kính ngưỡng cúng dâng lên. <br>
+                    Chúng con nguyện giữ gìn <br>
+                    Tiết kiệm từng chút một. <br>
+                    Chẳng dám phung phí phạm <br>
+                    Ngày một bữa nuôi thân. <br>
+                    Chẳng dám ăn phi thời <br>
+                    Vì phi thời phí phạm. <br>
+                    Như giết hại con mình <br>
+                    Chúng con nguyện hết sức. <br>
+                    Năng nổ siêng tu hành <br>
+                    Giải thoát thân tâm mình. <br>
+                    Làm chủ đường sanh tử <br>
+                    Báo đáp ơn chư Phật. <br>
+                    Ơn sanh thành dưỡng dục <br>
+                    Ơn đàn na thí chủ. <br>
+                    Chúng con cũng thành tâm <br>
+                    ước nguyện cho tất cả. <br>
+                    Kẻ còn người đã mất <br>
+                    Đều được hưởng Phật pháp. <br>
+                    Ly dục ly ác pháp <br>
+                    Không làm khổ mình, người. <br>
+                    Nam Mô Bổn Sư Thích Ca Mâu Ni. <br>  
+                    --- (HẾT) ---    
+                </p>
+                </div> <!-- rtho-trai-6 -->
+            </div> <!-- tho tei 6 -->
+            <div id="rnhap-that-1" class="feature-card">
+                <button class="card-tts" type="button">▶️ Read</button>                    
+                <div>
+                    <h4>KHI NÀO NGỒI KIẾT GIÀ TU TẬP </h4> (Đường Về Xứ Phật-tập 2). <br>
+                    <span style="color: #880000;font-size: 18px;">Giai đoạn 1: Thành tựu (Thánh giới uẩn Hộ trì các căn - chánh niệm tỉnh giác).</span><br><br>
+                    <li>
+                        1, Vị ấy thành tựu <b>Thánh giới uẩn</b>. 
+                    </li><li>
+                        2, Thành tựu Thánh <b>hộ trì các căn</b>.
+                    </li><li>
+                        3, Thành tựu Thánh <b>chánh niệm tỉnh giác</b>.
+                    </li><li>
+                        4, Lựa một <b>trú xứ thanh vắng</b>, như khu rừng, gốc cây, khe núi, hang đá, bãi tha ma, lùm cây ngoài trời, đống rơm.
+                    </li><br>
+                    <p>
+                        5, Sau khi ăn xong và đi khất thực trở về, vị ấy ngồi kiết già, lưng thẳng tại chỗ nói trên, và an trú chánh niệm trước mặt.<br>
+                        6, Từ bỏ dục tham ở đời, sống với tâm thoát ly dục tham, gọt rửa tâm hết dục tham.<br>
+                        7, Từ bỏ sân hận, vị ấy sống với tâm không sân hận, lòng từ mẫn thương xót tất cả chúng sanh hữu tình, gọt rửa tâm hết sân hận.<br>
+                        8, Từ bỏ hôn trầm thùy miên, sống thoát ly hôn trầm thùy miên, với tâm tưởng hướng về ánh sáng chánh niệm tỉnh giác, gọt rửa tâm hết hôn trầm thùy miên.<br>
+                        9, Từ bỏ trạo cử, hối quá, sống không trạo cử, nội tâm trầm lặng, gọt rửa tâm hết trạo cử, hối quá.<br>
+                        10, Từ bỏ nghi ngờ, sống thoát khỏi nghi ngờ, không phân vân, lưỡng lự, gọt rửa tâm hết nghi ngờ đối với thiện pháp”.<br>
+                    </p><br><li>
+                        <b><em>Phần thứ nhất:</em> Giới uẩn.</b><br>
+                        1, <b>Giới cấm nghĩa là gì?</b> Giới cấm là một điều luật bắt buộc mỗi tín đồ không được vi phạm, nếu ai vi phạm thì không được chấp nhận là tín đồ Phật giáo nữa. 
+                        Giới cấm giống như pháp luật trong một nước, mà mỗi công dân trong nước đó phải chấp hành, tuân thủ, không được vi phạm, nếu ai vi phạm thì sẽ bị toà án kết tội, 
+                        nặng nhẹ tùy theo bộ luật đã qui định (29 giới). <br>
+                        1, không sát sanh -- 2, không tham lam -- 29, ít muốn biết đủ.
+                    </li><li>
+                        2, <b>Giới hạnh là gì?</b> 25 Giới hạnh là những hành động không vi phạm giới luật, là
+                        những hành động cao quý không làm khổ mình, khổ người và khổ tất cả chúng
+                        sanh, là những hành động ôn tồn nhã nhặn, khiêm hạ, từ tốn, dịu dàng, an ủi,
+                        xoa dịu những vết thương của mọi người và tất cả chúng sanh, là những hành
+                        động không làm trái với lương tâm của mình, v.v..
+                    </li><li>
+                        3, <b>Giới đức là gì?</b> Giới đức là đức từ, đức bi, đức hỷ, đức xả, đức nhẫn nhục, đức tùy thuận,
+                        đức bằng lòng, đức hiếu sinh, đức buông xả, đức ly tham, đức ly dục, v.v..
+                    </li><li>
+                        4, <b>Giới hành là gì?</b> Giới hành là những pháp môn thực hành để tâm ly dục ly
+                        ác pháp, để sống không làm khổ mình khổ người và khổ cả hai, để tâm thanh
+                        thản an lạc và vô sự, để tâm không phóng dật, để tâm vô lậu, để tâm có đủ Tứ
+                        Như Ý Túc, để tâm có đủ Tam Minh.<br>
+                        <b><em>Các giới hành gồm có:</em></b> Tứ Bất Hoại Tịnh, Tứ Vô Lượng Tâm, Tứ Chánh Cần, Tứ
+                        Niệm Xứ, Tứ Như Ý Túc, Thất Giác Chi, Ngũ Căn, Ngũ Lực. Như vậy tất cả pháp
+                        trên đây được gọi là 37 phẩm trợ đạo.
+                    </li>
+                        Trên đây là <strong>Thánh giới uẩn,</strong> một người tu hành để tìm cầu sự giải thoát mà không thành tựu Thánh giới uẩn này 
+                        thì con đường giải thoát không bao giờ tìm thấy được. Cho nên, đức Phật dạy: “Vị ấy thành tựu Thánh giới uẩn này”.
+                        Thành tựu Thánh giới uẩn là thành tựu phần một trong giai đoạn tu tập thứ nhất mà người tu sĩ cần phải nhiếp phục tâm mình 
+                        và giữ gìn trọn vẹn những Thánh giới này.<br></br>
+
+                        <b><em>Phần thứ hai: </em>Thánh hộ trì các căn </b>mà các bạn đã được học và tu tập trong tập II và tập III Những Lời Gốc Phật Dạy. Vậy phần
+                        này chúng tôi không cần giảng dạy trở lại. Nhưng các bạn phải nhớ lời dạy của Phật: “Thành tựu Thánh hộ trì các căn này”. Muốn tu tập làm chủ sanh tử
+                        luân hồi mà không thành tựu Thánh hộ trì các căn này thì chẳng bao giờ nếm được mùi vị giải thoát.
+                        Khi đã thành tựu được phần thứ hai thì tiếp tục tu tập phần thứ ba trong giai đoạn một. <br><br>
+                        
+                        <b><em>Phần thứ ba: </em>chánh niệm tỉnh giác</b>. Nếu không tập chánh niệm tỉnh giác thì sức tỉnh thức không có. 
+                        Sức tỉnh thức không có thì si mê sẽ hiện rõ qua những trạng thái thuỳ miên, hôn trầm, hôn tịch, vô ký, ngoan không, v.v.. <br>
+                        Bởi vậy người tu sĩ phải tu tập nhiều về Chánh niệm tỉnh giác, như đức Phật đã dạy: <br>
+                        <b>“Thành tựu Thánh chánh niệm tỉnh giác này”</b>. Chỉ khi nào thành tựu Chánh niệm tỉnh giác tức là chúng ta không
+                        còn ngủ nghỉ phi thời, không còn hôn trầm thùy miên tấn công thì chúng ta mới tu tập xong giai đoạn một. <br>
+                        Tu tập như vậy mới có căn bản, mới có kết quả hiện thực tốt đẹp, mới có niềm tin sâu về Phật pháp, mới thấy Phật pháp không dối người. <br>
+                        <span style="color:#0b28ac">Tu tập xong giai đoạn thứ nhất.</span><br><br>
+                    <em>Xem tiếp giai đoạn 2 - ngồi kiết già. </em>
+                </div>
+            </div> <!-- rnhap-that-1 -->
+            <div id="rnhap-that-2" class="feature-card">
+                <button class="card-tts" type="button">▶️ Read</button>
+                <div>
+                    <h4> Khi nào ngồi kiết già - giai đoạn 2,</h4>
+                    <p style="color: rgb(9, 100, 47);">
+                        <span style="color: #880000;font-size: 16px;">Giai đoạn 2: Chúng ta mới bắt đầu tu tập.<br></span>
+                        Tìm nơi xứng hợp để tu tập ở giai đoạn hai là nơi như thế nào, chúng ta hãy nghe đức Phật dạy: <br>
+                        <b>“Lựa một trú xứ thanh vắng</b>, như khu rừng, gốc cây, khe núi, hang đá, bãi tha ma, lùm cây ngoài trời, đống rơm, v.v..”. <br>
+                        Như vậy, rõ ràng Phật dạy chúng ta tìm nơi vắng vẻ yên tịnh để tu tập giai đoạn hai mới có kết quả. 
+                        Vậy nơi chốn chúng ta đã tìm được rồi thì đây là thuận duyên còn nếu nghịch duyên thì chúng ta phải làm sao? <br>
+                        Thưa các bạn! Nếu chưa có nơi thanh tịnh vắng lặng để tu tập ở giai đoạn hai thì chúng ta nên tu tập trở lại ở giai đoạn một 
+                        cho thấm nhuần giới luật, đức hạnh hiện bày, cho phòng hộ sáu căn miên mật hơn và cho chánh niệm tỉnh giác cao hơn nữa. 
+                        Nếu vị trí thanh tịnh để tu tập chưa có mà vội vàng tu thì tu cũng chẳng có kết quả gì. Vì thế đức Phật dạy: <br>
+                        
+                        <b>“Lựa một trú xứ thanh vắng, như khu rừng, gốc cây, khe núi, hang đá, bãi tha ma, lùm cây ngoài trời, đống rơm, v.v..”. </b>
+                        Đó là nơi lý tưởng tu tập ở giai đoạn hai. Là một tu sĩ đệ tử của đức Phật, khi đức Phật dạy như vậy thì chúng ta hãy tin tưởng và làm theo cho đúng lời dạy này. <br>
+                        
+                        Đọc đoạn kinh trên chúng ta quan sát thấy rất rõ đức Phật dạy tu tập từng giai đoạn một, giai đoạn này tu xong mới tu tập đến giai đoạn khác. 
+                        Sau khi tìm được vị trí thanh vắng, yên tịnh, nhưng chúng ta cũng chưa vội tu, mà hãy theo lời đức Phật dạy là phải xin cơm ăn cho no bụng. 
+                        Khi ăn xong rồi mới vào vị trí thanh vắng đó, bắt đầu tu tập. Còn nếu chưa ăn cơm xong mà vội tu tập thì bụng đói sẽ khó tu tập. Vì thế, đức Phật dạy: <br>
+                        
+                        “Sau khi ăn xong và đi khất thực trở về, vị ấy ngồi kiết già, lưng thẳng tại chỗ nói trên, và an trú chánh niệm trước mặt”, 
+                        nghĩa là đi khất thực rồi đến một nơi nào đó ăn cơm. Sau khi ăn cơm xong ta nên nghỉ ngơi một chút cho tiêu hóa cơm và thực phẩm, 
+                        khoảng độ 30 phút hoặc một giờ thì chúng ta mới đến vị trí thanh vắng để tu tập.<br>
+                        
+                        Bài pháp này đức Phật dạy chúng ta tu tập rất rõ ràng từng chi tiết. Bắt đầu khởi sự tu tập thì phải thực hiện cho bằng được <b>“Thánh giới uẩn”</b>. 
+                        Khi giới luật được nghiêm trì, không còn vi phạm thì tiếp tục tu tập <b>“Hộ trì các căn”.</b> Khi hộ trì các căn nghiêm chỉnh, 
+                        các căn không còn dính mắc các trần thì tiếp tục tu tập cho bằng được <b>“Chánh Niệm Tỉnh Giác” </b>để phá sạch hôn trầm, thùy miên, vô ký. <br>
+                        Xin các bạn lưu ý ba pháp trên đây và tu tập cho đúng bài bản thì kết quả giải thoát không thể lường được. 
+
+                        Đó là một nền tảng tu tập vững chắc bảo đảm sự giải thoát sẽ đến với các bạn ngay liền, ở trong tầm tay các bạn. <br>
+                        Trong sự tu tập các bạn nên nhớ là phải thiện xảo, linh động uyển chuyển khéo léo thay đổi pháp theo từng tâm niệm của mình. 
+                        Cố định pháp, cố định giờ giấc thành ra tu tập ức chế. Đạo Phật dạy chúng ta chế ngự thân tâm, chứ không phải ức chế thân tâm; Chế ngự thân tâm chắc các bạn rõ chứ! <br>
+                        Sau khi thành tựu những pháp này rồi, mới bắt đầu tìm nơi thanh vắng yên tịnh tức là nhập thất tu hành ở giai đoạn thứ hai. <br>
+                        
+                        Ở giai đoạn thứ hai <b>“Sau khi ăn xong và đi khất thực trở về, vị ấy ngồi kiết già, lưng thẳng tại chỗ nói trên, và an trú chánh niệm trước mặt”.</b><br> <br>
+                        Ở giai đoạn này có ba việc cần làm: Ăn cơm xong tức là giờ trưa (giờ ngọ), khoảng 12 giờ và nghỉ trưa 30 phút, tắm giặt 30 phút nữa tức là 1 giờ. Đúng 1 giờ bắt đầu tu tập.
+                        Vậy vào giờ này tu tập cái gì? Theo như lời Phật dạy: <br>
+                        <b>“Vị ấy ngồi kiết già, lưng thẳng tại chỗ nói trên”</b> nghĩa là chúng ta phải tập luyện ngồi tréo chân kiết già và giữ
+                        lưng thẳng cho được, tại nơi thanh vắng yên tịnh đã chọn trước.<br>
+
+                        Thưa các bạn! <b>Đây là giai đoạn thứ hai </b> của sự tu tập, các bạn nên nhớ kỹ: thứ nhất là tập ngồi kiết già, lưng thẳng. 
+                        Đó cũng là một phương pháp tu tập để giữ gìn thân bất động trong tư thế tỉnh thức. 
+                        Ở giai đoạn tu tập này, các bạn nên khép chặt thân bạn trong tư thế ngồi kiết già thì mới dễ nhiếp tâm an trú trong chánh niệm tỉnh giác. 
+                        Nếu các bạn quá dễ dãi không khép chặt thân trong tư thế ngồi kiết già này thì các bạn khó mà an trú tâm.
+                        Cần phải tập ngồi vững vàng từ 5 phút đến 30 phút. 
+                        Trong khi vừa tập ngồi kiết già vừa nhiếp tâm an trú chánh niệm trước mặt mình, như đức Phật đã dạy: “Và an trú chánh niệm trước mặt”. 
+                        Như vậy, chánh niệm trước mặt là niệm gì? Có phải là niệm hơi thở vô, hơi thở ra không? <br>
+                        Thưa các bạn! Không phải niệm hơi thở vô, hơi thở ra mà là <b>niệm từ bỏ tâm dục tham ở đời, sống thoát ly dục tham, gọt rửa tâm hết dục
+                        tham </b> các bạn ạ! Các bạn có tin lời chúng tôi nói này không? Nếu không tin thì các bạn hãy nghe đức Phật dạy: <br>“Vị ấy từ bỏ dục tham ở đời, sống với
+                        tâm thoát ly dục tham, gọt rửa tâm hết dục tham”.
+                    </p>
+                    <br><hr>
+                </div>
+            </div> <!-- rnhap-that-2 -->
+            <div id="rgioi-phan-biet" class="feature-card">
+                <button class="card-tts" type="button">▶️ Read</button>
+                <div>
+                    <h4> Giới Phân Biệt</h4>
+                    <p style="color: rgb(65, 66, 172);">
+                        1, sáu giới, <br>
+                        2, sáu xúc xứ,  <br>
+                        3, mười tám ý hành,  <br>
+                        4, bốn thắng xứ, <br>
+                        5, khi được an trú, vọng tưởng không có chuyển động.  <br>
+                        6, Chớ có buông lung trí tuệ, hãy hộ trì chân đế, hãy tăng trưởng huệ thí, hãy tu học tịch tịnh.  <br>
+                    </p><p>
+                        <span style="color: #770000;font-size: 16px;">Đây là tổng thuyết sáu giới phân biệt.</span><br>
+                        Người này có sáu giới : Địa giới, (thủy giới), hỏa giới, phong giới, không giới, thức giới.<br>
+                        "Người này có sáu xúc xứ", do duyên gì được nói đến như vậy? Nhãn xúc xứ, nhĩ xúc xứ, tỷ xúc xứ, thiệt xúc xứ, thân xúc xứ, ý xúc xứ.<br>
+                        "Người này có mười tám ý hành", do duyên gì được nói đến như vậy? Khi con mắt thấy sắc, người ấy chạy theo sắc, chỗ trú xứ của hỷ, 
+                        chạy theo sắc chỗ trú xứ của ưu, chạy theo sắc chỗ trú xứ của xả. <br>
+                        khi tai nghe tiếng... mũi ngửi hương... lưỡi nếm vị... thân cảm xúc... ý nhận thức pháp, người ấy chạy theo pháp, chỗ trú xứ của hỷ, 
+                        người ấy chạy theo pháp, chỗ trú xứ của ưu, người ấy chạy theo pháp, chỗ trú xứ của xả. Như vậy có sáu hỷ hành, sáu ưu hành, sáu xả hành.<br>
+                        
+                        "Người này có bốn thắng xứ ", do duyên gì được nói đến như vậy? Tuệ thắng xứ, đế thắng xứ, huệ thí thắng xứ, tịch tịnh thắng xứ.<br>
+                        "Chớ có buông lung trí tuệ, hãy hộ trì chân đế, hãy tăng trưởng huệ thí, hãy tu học tịch tịnh".<br><br>
+                    </p><p>
+                        <b>Có sáu giới này:</b> địa giới, thủy giới, hỏa giới, phong giới, không giới, thức giới. 
+                        vị ấy như thật quán "Cái này không phải của tôi, cái này không phải là tôi, cái này không phải tự ngã của tôi". <br>
+                        Sau khi như thật quán sát địa giới với chánh trí tuệ như vậy, vị ấy sanh yếm ly đối với địa giới, tâm từ bỏ địa giới.<br>
+                        ...<br>
+                        <b>Khi thức còn lại </b>được trong sạch, trong trắng, vị ấy biết được một số sự việc nhờ thức ấy. Vị ấy thức tri được lạc, thức tri được khổ, thức tri được bất khổ bất lạc.<br><br>
+
+                        Lại nữa <b>xả còn lại </b>được trong sạch, trong trắng, nhu nhuyến, dễ uốn nắn, chói sáng. Người ấy tuệ tri như sau: 
+                        "Nếu ta tập trung xả này thanh tịnh như vậy, trong trắng như vậy vào Hư không vô biên xứ, và tu tập tâm ta tùy theo pháp ấy, 
+                        thời xả này y cứ vào đấy, chấp thủ tại đấy được an trú nơi ta trong một thời gian dài.<br>
+
+                        Người ấy tuệ tri như sau: <b>"Nếu ta tập trung xả này</b> thanh tịnh như vậy, trong trắng như vậy vào Hư không vô biên xứ... 
+                        Thức vô biên xứ... Vô sở hữu xứ... Phi tưởng phi phi tưởng xứ, và tu tập tâm của ta tùy theo pháp ấy, thời (xả) ấy trở thành pháp hữu vi".<br>
+                        Vị ấy không tác thành, không suy tưởng đến hữu hay phi hữu. Do không tác thành, không suy tưởng đến hữu hay phi hữu, 
+                        vị ấy không chấp thủ một sự vật gì ở đời; chấp thủ không quấy rối vị ấy; do chấp thủ không quấy rối vị ấy, vị ấy tự chứng Niết-bàn,
+                        Nếu vị ấy cảm giác lạc thọ, vị ấy tuệ tri: <b>"Thọ ấy là vô thường"</b>; vị ấy tuệ tri: <b>"Không nên đắm trước"</b>; vị ấy tuệ tri: <b>"Không phải là đối tượng để hoan hỷ"</b>.<br><br>
+                    
+                        Khi vị ấy cảm giác một <b>cảm thọ với thân là tối hậu</b>, vị ấy tuệ tri: "Ta cảm giác một cảm thọ với thân là tối hậu.<br>
+                        Khi vị ấy tuệ tri: "Ta cảm giác một <b>cảm thọ với sinh mạng là tối hậu</b>", vị ấy tuệ tri: "Sau khi thân hoại mạng chung, mọi cảm thọ hoan hỷ ở nơi đây trở thành thanh lương".<br><br>
+
+                        Như ngọn đèn dầu được cháy đỏ nhờ dầu và tim. Khi dầu và tim diệt tận, và không có vật liệu khác được đem đến, ngọn đèn dầu ấy bị diệt tắt... 
+                        Cũng vậy, này Tỷ-kheo, khi cảm giác một cảm thọ lấy thân làm tối hậu, vị ấy tuệ tri: "Tôi cảm giác một <b>cảm thọ lấy thân làm tối hậu"</b>. 
+                        Khi cảm giác một cảm thọ lấy sinh mạng làm tối hậu, vị ấy tuệ tri: "Tôi cảm giác một <b>cảm thọ lấy sinh mạng làm tối hậu</b>"; vị ấy tuệ tri: 
+                        Sau khi thân hoại mạng chung, mọi cảm thọ hoan hỷ ở nơi đây <b>trở thành thanh lương</b>". <br><br>
+                    </p>
+                        <span style="color: #880000;font-size: 16px;">Tuệ thắng xứ, đế thắng xứ, huệ thí thắng xứ, tịch tịnh thắng xứ.</span><br>
+                    <li>1, Như Vậy Là Tối Thắng Thánh Tuệ, nghĩa là trí, biết sự đoạn tận mọi đau khổ. <b>tức Tuệ thắng xứ (1)</b>.<br></li>
+
+                    <li>2, Sự giải thoát ấy của vị này, an trú vào chân đế, không bị dao động. Cái gì không thể đưa đến hư vọng, thời thuộc về chân đế, Niết-bàn.
+                        thành tựu như vậy là thành tựu với tối thắng đế thắng xứ này. Vì rằng, này Tỷ-kheo, như vậy là <b>tối thắng Thánh đế (2)</b>, 
+                        tức là Niết-bàn, không có thể đưa đến hư vọng.<br></li>
+                        
+                    <li>3, Và những sanh y vô trí thức trước của nó đã được đầy đủ, đã được thành tựu. Chúng được đoạn tận, chặt tận gốc rễ.
+                        Do vậy, một Tỷ-kheo thành tựu như vậy là thành tựu với tối thắng huệ thí thắng xứ này. 
+                        như vậy là <b>tối thắng Thánh huệ thí (3)</b>, tức là sự xả ly tất cả sanh y.<br></li>
+                        
+                    <li>4, Và <b>tham ái vô trí thức trước</b> của nó, thuộc tham dục, tham nhiễm; pháp ấy được đoạn tận, chặt tận gốc rễ.<br> 
+                        Sự <b>phẫn nộ vô trí thức trước </b>của nó, thuộc sân hận, thuộc tội quá; pháp ấy được đoạn tận, cắt tận gốc rễ.<br>
+                        Và <b>vô minh vô trí thức trước </b>của nó, thuộc si mê, thuộc tội quá; pháp ấy được đoạn tận cắt tận gốc rễ.<br>
+                        Do vậy, Tỷ-kheo thành tựu như vậy là thành tựu Tối thắng tịch tịnh thắng xứ. 
+                        Như vậy là <b>tối thắng Thánh tịch tịnh (4)</b>, tức là sự tịch tịnh tham sân si. <br><br></li>
+                    <p>    
+                        Khi được nói đến "Chớ có buông lung trí tuệ, hãy hộ trì chân đế, hãy làm cho sung mãn huệ thí, hãy tu học tịch tịnh", chính do duyên này được nói đến như vậy.<br>
+                        "Khi được an trú, vọng tưởng không có chuyển động; Khi vọng tưởng không chuyển động, vị ấy được gọi là một ẩn sĩ tịch tịnh".<br>
+                    <br><hr>
+                </p></div>
+            </div> <!-- rgioi-phan-biet -->
+            <!-- 100 gioi chung hoc -->
+            <div id="r100-gioi" class="feature-card">
+                <button class="card-tts" type="button">▶️ Read</button>                    
+                <div>
+                    <h4> 100 Giới Chúng Học. </h4>
+                    <p><b>Giới 1-2 Nói về y phục.</b><br>
+                    1 - Nên mặc quần Niết bàn tăng cho cân bằng.<br>
+                    2 - Nên mặc ba y cho cân bằng, <br>
+                
+                    <b> phần thứ 2 là tác phong tại nhà cư sĩ.</b><br>
+                    3- là không được vắt trái áo vào nhà cư sĩ.<br>
+                    4- không được vắt trái áo vào ngồi nhà cư sĩ.<br>
+                    5- Không được áo quấn cổ vào nhà cư sĩ.<br>
+                    6- Không được quấn áo cổ, vào ngồi trong nhà cư sĩ.<br>
+                    7- Không được trùm khăn lên đầu vào nhà cư sĩ.<br>
+                    8 - Cũng không được trùm khăn lên đầu mà ngồi trong nhà cư sĩ.<br>
+                    9 - Không được vừa đi vừa nhảy vào nhà cư sĩ,<br>
+                    10 - Không được vừa đi vừa nhảy mà vào nhà cư sĩ mà ngồi trong nhà cư sĩ. <br>
+                    11 - Không được ngồi xổm trong nhà cư sĩ.<br>
+                    12 - Không được chống nạnh vào nhà cư sĩ.<br>
+                    13 - Không được chống nạnh vào ngồi ở trong nhà cư sĩ.<br>
+                    14 - Không được rung mình đi vào nhà cư sĩ,<br>
+                    15 - Không được rung mình ngồi ở trên ghế,<br>
+                    16 - Không được vung cánh tay vào nhà cư sĩ.<br>
+                    17 - Không được vung cánh tay đi vào nhà rồi ngồi vào nhà cư sĩ.<br>
+                    18 - Khéo che mình kín đáo vào nhà cư sĩ.<br>
+                    19 - Rồi ngồi trong nhà người ta cũng lấy cái y vậy trùm hết đầu cổ,<br>
+                    20 - Không được ngó trông hai bên đi vào nhà cư sĩ.<br>
+                    21 - Không được vào nhà cư sĩ ngó trông hai bên.<br>
+                    22 - Im lặng mà vào nhà cư sĩ.<br>
+                    23 - Vào ngồi nhà cư sĩ mình nên giữ cái vẻ mình im lặng,<br>
+                    24 - Không được cười đùa đi vào nhà cư sĩ.<br>
+                    25 - Mà cũng không được mà ngồi ở trong nhà người ta mà cười đùa giỡn nữa.<br>
+                    <br><hr>
+                </p></div>
+            </div> <!-- r100-gioi-1 -->
+            <div id="r100-gioi-2" class="feature-card">
+                <button class="card-tts" type="button">▶️ Read</button>                    
+                <div>
+                    <b> phần thứ 3: Tác phong trong sự ăn uống.</b><br>
+                    <p> 26 - Khi thọ thực, nên để ý đổ khỏi đổ rơi cơm canh.<br>
+                    27 -Lấy thức ăn vừa ngang miệng bát,<br>
+                    28 - Lấy canh ngang miệng bát.<br>
+                    29 - Cơm canh cân bằng mà ăn.<br>
+                    30 - Lấy theo thứ lớp trong bát mà ăn,<br>
+                    31 - Không được moi xóc trong bát mà ăn. <br>
+                    32 - Nếu Tỳ kheo không bệnh, không tự vì mình mà xin cơm canh.<br>
+                    33 - Không được lấy cơm đậy canh lại trông mong cho được lấy canh nữa.<br>
+                    34 - Không được xem trong bát của Tỳ kheo ngồi gần.<br>
+                    35 - Phải để ý tưởng trong bát mà ăn.<br>
+                    36 - Không được nắm cơm lớn miếng mà ăn.<br>
+                    37 - Không được há miệng lớn để, chờ cơm mà ăn.<br>
+                    38 - Không được ngậm cơm mà nói chuyện.<br>
+                    39 - Không được nắm cơm ngoài xa ném vào trong miệng.<br>
+                    40 - Ăn cơm không có được rơi đổ,<br>
+                    41 - Không được búng má mà ăn,<br>
+                    42 - Không được nhai đồ ăn ra tiếng mà ăn. <br>
+                    43 - Không được ăn cơm lùa húp lớn tiếng.<br>
+                    44 - Không được le lưỡi mà liếm món ăn, làm quá rắn mối. <br>
+                    45 - Không được rảy tay mà ăn. <br>
+                    46 - Không được nhặt cơm rơi mà ăn.<br>
+                    47 - Không được tay dơ cầm bát đựng thức ăn.<br>
+                    48 - Không được rửa bát, đổ bát vào nhà cư sĩ.<br>
+                    49 - Không được đại tiểu tiện hỉ nhổ trên rau cỏ tươi, trừ khi có bệnh.<br>
+                    50 - Không được đại tiểu tiện phỉ nhổ trong dòng nước, trừ khi có bệnh.<br>
+                    51 - Không có được đứng tiểu tiện, trừ khi có bệnh.<br>
+                    
+                    <b> phần thứ sáu, tác phong mà thuyết pháp.</b> <br>
+                    Từ 52 đến 59, 86, 92 đến 96, 100.<br>
+                    52 - Không được thuyết pháp cho người vắt trái áo trên vai, không cung kính, trừ khi họ có bệnh.<br>
+                    53 - Không được vì người vấn áo trên cổ mà thuyết pháp, trừ khi họ bị bệnh.<br>
+                    54 - Không được vì người che trên đầu mà thuyết pháp, trừ khi họ có bệnh.<br>
+                    55 - Không được vì người trùm bọc trên đầu, mà thuyết pháp trừ ra họ có bệnh.<br>
+                    56 - Không được vì người chống nạnh mà thuyết pháp.<br>
+                    57 - Không được vì người mang dép da mà thuyết pháp.<br>
+                    58 - Không được vì người mang guốc gỗ mà thuyết pháp.<br>
+                    59 - Không được vì người cưỡi ngựa mà thuyết pháp,<br>
+                    59 - Không được vì người cưỡi ngựa mà thuyết pháp,<br>
+                    </p>
+                </div>
+            </div> <!-- r100-gioi-2 -->
+                                
+            <div id="r100-gioi-3" class="feature-card">
+                <button class="card-tts" type="button">▶️ Read</button>                    
+                <div><p>    
+                    86 - Không được vì người ngồi mà mình đứng mà thuyết pháp.<br>
+                    87 - Không được vì người nằm, mình ngồi mà thuyết pháp.<br>
+                    88 - Không được vì người ngồi chính giữa mà mình ngồi một bên mà mình thuyết pháp.<br>
+                    89 - Không được vì người ngồi ở chỗ cao mà mình ngồi chỗ thấp mà thuyết pháp.<br>
+                    90 - Không được vì người đi ở trước mà mình đi ở sau mà thuyết pháp.<br>
+                    91 - Không được vì người đi kinh hành chỗ cao mà mình đi kinh hành chỗ thấp mà thuyết pháp.<br>
+                    96: Không được vì người cầm gậy không cung kính mà thuyết pháp.<br>
+                    97: Không được vì người cầm gươm mà thuyết pháp. <br>
+                    98: Không được vì người cầm giáo mà thuyết pháp.<br>
+                    99: Không được vì người cầm dao mà thuyết pháp. <br>
+                    100: Không được vì người cầm dù che mà thuyết pháp.<br>
+
+                    <b>Về phần thứ 7 đối với tháp và tượng Phật, cái giới từ 60 đến 85.</b><br>
+                    60: Không được ngủ nghỉ trong tháp Phật trừ ra là mình giữ gìn cái tháp đó.<br>
+                    63: Không được cầm dép da vào trong tháp.<br>
+                    64: Không được mang dép da đi nhiễu quanh tháp Phật,<br>
+                    65: Không được mang giày bố bọc gót vào tháp Phật.<br>
+                    66: Không được cầm giày bố bọc gót vào nơi tháp Phật.<br>
+                    67: Ngồi ăn dưới tháp Phật không được xả rác làm dơ đất.<br>
+                    68: Không được khiêng thây chết đi ngang qua tháp.<br>
+                    69: Không được ở dưới tháp chôn thây ma.<br>
+                    70: Không được ở dưới tháp đốt thây ma.<br>
+                    71: Không được ở trên, ở trước tháp đốt thây ma.<br>
+                    72: Không được bốn phía tháp Phật đốt thây chết để hơi hôi thối bay vào tháp. <br>
+                    73: Không được mang áo và giường người chết từ dưới tháp đi ngang qua từ khi giặt nhuộm xông hương.<br>
+                    74: Không được dưới tháp Phật đại tiểu tiện.<br>
+                    77: Không được mang ảnh tượng Phật đến chỗ đại tiểu tiện.<br>
+                    78: Không được ở dưới tháp Phật nhăn cành dương.<br>
+                    79: Không được ở trước tháp Phật nhăn cành dương.<br>
+                    80: Không được bốn phía tháp nhăn cành dương.<br>
+                    81: Không được ở dưới tháp Phật hỉ mũi, khạc nhổ.<br>
+                    82: Không được trước tháp Phật hỉ mũi, khạc nhổ.<br>
+                    83: Không được bốn phía tháp Phật hỉ mũi khạc nhổ.<br>
+                    84: Không được ngồi duỗi chân ở trước tháp Phật.<br>
+                    85: Không được để tháp nhỏ ở phòng thấp xấu, mình ở phòng cao tốt.<br>
+                </p><br></div>
+            </div> <!-- r100-gioi-3 -->
+
+            <div id="r100-gioi-4" class="feature-card">
+                <button class="card-tts" type="button">▶️ Read</button>                    
+                <div><p style="color: #0b28ac;"> 
+                    <b>VỀ PHẦN TÁC PHONG ĐI ĐƯỜNG, </b><br>
+                    Giới 93: Không được nắm tay nhau đi giữa đường.<br>
+                    Giới 94: Không được ở cây cao quá đầu người.<br>
+                    Giới 95: Không được túi đan đựng bát sâu, đầu gậy vác đi trên vai mà đi.<br><br>
+                    </p>
+                    <p style="color: #064d1d;">
+                    <b>7 GIỚI DIỆT TRÁNH và 8 KIẾT GIỚI THÂT DIỆT TRÁCH</b><br>
+                    Trong chúng tì kheo có bốn tránh sự khởi lên:<br>
+                    1.	Một là ngôn tránh: là tranh cãi nhau dẫn đến các việc pháp phi pháp cho đến thuyết bất thuyết, hai bên đấu tranh nhau như thế nào.<br>
+                    2.	Hai là mích tránh: xích mích nhau mà tranh chấp về sự phá giới, <br>
+                    3.	Ba là phạm tránh: tức là phạm bảy tựu, tranh cãi nhau về Ba la di, Tăng tàng, Đơn đọa, Hối hóa, Thâu lăng giá, Ác tác, Ác thuyết.<br>
+                    4.	Bốn là sự tránh: Cách xử lí của ngôn tránh, mích tránh và phạm tránh, nghĩa sự tránh này là cách xử lí của những cái cãi cọ này để đừng có cãi cọ nữa.<br>
+                            <i>a. Phép hiện tiền tì kheo ni dứt sự tranh cãi.<br>
+                                b. Phép nhớ nghĩ dứt sự tranh cãi.<br>
+                                c. Phép bất si tỳ ni dứt sự tranh cãi.<br> 
+                                d. Phép tự nói tội để dứt sự tranh cãi.</i><br><br>
+                    5. Phép tìm tội tướng để dứt sự tranh cãi.<br>
+                    6. Pháp nhiều người nói để dứt sự tranh cãi.<br>
+                    7. Phép như cỏ mà che đất để dứt sự tranh cãi. <br>
+                </div></p><br><hr>
+            </div> <!-- r100-gioi -->
+
+            <div id="r7777" class="feature-card">
+                <button class="card-tts" type="button">▶️ Read</button>
+                <div><h3>Lời Phật Dạy</h3> 
+                    <p>
+                        Do nhân gì, thưa Tôn giả Gotama, do duyên gì, ngày nay loài người lại bị tiêu diệt, bị giảm thiểu trông rõ như thể. <br>
+                        <h4>1- các làng trở thành không phải làng,  <br>
+                        2- các thị trấn trở thành không phải thị trấn,  <br>
+                        3- các thành phố trở thành không phải thành phố,  <br>
+                        4- các quốc độ trở thành không phải quốc độ? </h4><br>
+                        1-	Ngày nay, loài người bị tham ái phi pháp làm cho say đắm, và bị ác tham chinh phục, bị tà kiến chi phối, chúng cầm gươm sắc bén sát hại lẫn nhau. 
+                        Do vậy nhiều người mạng chung. Ðây là nhân, là duyên, ngày nay loài người bị tiêu diệt, bị giảm thiểu trông rõ như thế ... các quốc độ trở thành không quốc độ. <br>
+                        2-	Lại nữa, ngày nay, các loài người bị tham ái phi pháp làm cho say đắm ... 
+                        bị các tà kiến chi phối; trời không mưa xuống đều đặn. Vì vậy, bữa ăn khó tìm, mùa màng hư mất, trắng xóa với côn trùng, chỉ còn lại cọng dẹp. 
+                        Do vậy, nhiều người mạng chung. Ðây là nhân, này Bà-la-môn, đây là duyên, vì sao ngày nay loài người bị tiêu diệt, bị giảm thiểu trông rõ như thế ... 
+                        các quốc độ trở thành không phải quốc độ. <br>
+                        3-	Lại nữa, ngày nay, các loài người bị <b>tham ái</b> phi pháp làm cho say đắm ... 
+                        bị các <b>tà kiến</b> chi phối; các loài Yakkha (<b>Dạ-xoa</b>) thả ra các loài <b>phi nhân dữ tợn</b>. Vì vậy, nhiều người mệnh chung. Ðây là nhân, này Bà-la-môn, đây là duyên,
+                            ngày nay loài người bị tiêu diệt, bị giảm thiểu trông rõ như thế ... các quốc độ trở thành không phải quốc độ.
+                    </p>
+                    <br><hr><br>
+                </div>
+            </div> <!-- r7777 -->  
+
+            <div id="r8888" class="feature-card">
+                <button class="card-tts" type="button">▶️ Read</button>
+                <div>
+                    <p style="color: #2f49bd;">
+                        Loài người bị gì che,<br>
+                        Bị trói buộc cái gì.<br>
+                        Phải chịu sanh đọa xứ,<br>
+                        Bị đóng cửa Phạm thiên.<br><br>
+                        Phẫn nộ và vọng ngữ,<br>
+                        Gian manh và lừa đảo.<br>
+                        Hà tiện và quá mạn,<br>
+                        Tật đố và dục cầu.<br>
+                        Nghi ngờ và hại người,<br>
+                        Tham, sân, si kiêu mạn.<br>
+                        Những tánh này trói buộc,<br>
+                        Khiến con người xú uế.<br>
+                        Phải chịu sanh đọa xứ,<br>
+                        Bị đóng cửa Phạm thiên.<br><br>
+                        Chính tại Phạm thiên giới,<br>
+                        Này Ngươi Bà-la-môn.<br>
+                        Ai bỏ ngã, ngã sở,<br>
+                        Tâm chuyên chú nhứt cảnh.<br>
+                        Tu tập đại bi tâm,<br>
+                        Thoát ly mọi xú uế.<br>
+                        Lánh xa mọi tà dục,<br>
+                        An trú ở nơi đây.<br>
+                        Để chứng quả bất tử,<br>
+                        Chính tại Phạm thiên giới.<br></p>
+                        <br><hr><br>
+                        <p>Nếu từ bỏ dục vọng,<br>
+                        Mà kẻ phàm say đắm.<br>
+                        Tinh cần và cương quyết,<br>
+                        Vững chắc trong nhẫn lực,<br>
+                        Đó là con đường chánh.<br>
+                        Con đường hướng vô thượng,<br>
+                        Được Thiện nhân hộ trì,<br>
+                        Sanh lên cõi Phạm thiên.<br>
+                    </p> <br><hr><br>
+                    <img src="250gioitykheo.png" alt="250 Giới tì kheo">
+                </div>
+            </div> <!-- r8888 -->
+        </div>
+    </div><!-- contener -->
+    </section><!-- features -->
+    <!-- <a href="#" title="Telegram">📷 Telegram</a> -->
+    <footer>
+        <div class="tts-control-s" id="ttsControl-s">
+            <a href="#text-nhap" class="btn-2">Go Top</a>
+            <button id="ttsPauseBtn2">⏸️ Pause</button>
+            <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-share-url="https://core.telegram.org/widgets/share"></script>
+            <p id="foot-mess">&copy; Sep.2025 Awsome Site-Dapvv4500@gmail.com. All rights reserved.
+            </p>
+        </div>
+    </footer>
+   
+    <!-- //C:\Users\B SAIGON BEAUTY CENT\Desktop\Tu4500\TuTap4500.html -->
+    <script>  // Audio Player JavaScript
+        class AudioPlayer {
+            constructor() {
+                this.audio = document.getElementById('audioPlayer');
+                this.playPauseBtn = document.getElementById('playPauseBtn');
+                this.stopBtn = document.getElementById('stopBtn');
+                this.prevBtn = document.getElementById('prevBtn');
+                this.nextBtn = document.getElementById('nextBtn');
+                this.volumeSlider = document.getElementById('volumeSlider');
+                this.progressBar = document.getElementById('progressBar');
+                this.progressFill = document.getElementById('progressFill');
+                this.currentTimeSpan = document.getElementById('currentTime');
+                this.durationSpan = document.getElementById('duration');
+                this.audioFile = document.getElementById('audioFile');
+                this.playlist = document.getElementById('playlist');
+                this.visualizer = document.getElementById('visualizer');
+                this.playname = document.getElementById('playname');
+                
+                this.playlistItems = [];
+                this.currentTrackIndex = 0;
+                this.isPlaying = false;
+                
+                this.initializeEventListeners();
+                this.createVisualizer();
+                this.loadSampleAudio();
+            }
+
+            initializeEventListeners() {
+                // Play/Pause button
+                this.playPauseBtn.addEventListener('click', () => this.togglePlayPause());
+                
+                // Stop button
+                this.stopBtn.addEventListener('click', () => this.stop());
+                
+                // Previous/Next buttons
+                this.prevBtn.addEventListener('click', () => this.previousTrack());
+                this.nextBtn.addEventListener('click', () => this.nextTrack());
+                
+                // Volume control
+                this.volumeSlider.addEventListener('input', (e) => {
+                    this.audio.volume = e.target.value / 100;
+                });
+                
+                // Progress bar
+                this.progressBar.addEventListener('click', (e) => {
+                    const rect = this.progressBar.getBoundingClientRect();
+                    const percent = (e.clientX - rect.left) / rect.width;
+                    this.audio.currentTime = percent * this.audio.duration;
+                });
+                
+                // Audio events
+                this.audio.addEventListener('loadedmetadata', () => {
+                    this.durationSpan.textContent = this.formatTime(this.audio.duration);
+                });
+                
+                this.audio.addEventListener('timeupdate', () => {
+                    this.updateProgress();
+                    this.updateVisualizer();
+                });
+                
+                this.audio.addEventListener('ended', () => {
+                    this.nextTrack();
+                });
+                
+                // File upload
+                this.audioFile.addEventListener('change', (e) => {
+                    this.handleFileUpload(e.target.files);
+                });
+            }
+
+            createVisualizer() {
+                for (let i = 0; i < 50; i++) {
+                    const bar = document.createElement('div');
+                    bar.className = 'visualizer-bar';
+                    bar.style.height = '10px';
+                    this.visualizer.appendChild(bar);
+                }
+            }
+
+            updateVisualizer() {
+                const bars = this.visualizer.querySelectorAll('.visualizer-bar');
+                bars.forEach((bar, index) => {
+                    const height = Math.random() * 50 + 10;
+                    bar.style.height = `${height}px`;
+                });
+            }
+
+            togglePlayPause() {
+                if (this.audio.paused) {
+                    this.play();
+                } else {
+                    this.pause();
+                }
+            }
+
+            play() {
+                if (this.playlistItems.length > 0) {
+                    this.audio.play();
+                    this.isPlaying = true;
+                    this.playPauseBtn.textContent = '⏸️ Pause';
+                    this.playPauseBtn.classList.add('playing');
+                }
+            }
+
+            pause() {
+                this.audio.pause();
+                this.isPlaying = false;
+                this.playPauseBtn.textContent = '▶️ Play';
+                this.playPauseBtn.classList.remove('playing');
+            }
+
+            stop() {
+                this.audio.pause();
+                this.audio.currentTime = 0;
+                this.isPlaying = false;
+                this.playPauseBtn.textContent = '▶️ Play';
+                this.playPauseBtn.classList.remove('playing');
+            }
+
+            previousTrack() {
+                if (this.playlistItems.length > 0) {
+                    this.currentTrackIndex = (this.currentTrackIndex - 1 + this.playlistItems.length) % this.playlistItems.length;
+                    this.loadTrack(this.currentTrackIndex);
+                }
+            }
+
+            nextTrack() {
+                if (this.playlistItems.length > 0) {
+                    this.currentTrackIndex = (this.currentTrackIndex + 1) % this.playlistItems.length;
+                    this.loadTrack(this.currentTrackIndex);
+                }
+            }
+
+            loadTrack(index) {
+                if (this.playlistItems[index]) {
+                    this.audio.src = this.playlistItems[index].url;
+                    this.updatePlaylistUI();
+                    if (this.isPlaying) {
+                        this.audio.play();
+                    }
+                 playname.textContent = this.playlistItems[index].name;
+                }
+            }
+
+            handleFileUpload(files) {
+                Array.from(files).forEach(file => {
+                    if (file.type.startsWith('audio/')) {
+                        const url = URL.createObjectURL(file);
+                        this.playlistItems.push({
+                            name: file.name,
+                            url: url,
+                            file: file
+                        });
+                    }
+                });
+                
+                this.updatePlaylistUI();
+                
+                if (this.playlistItems.length === 1) {
+                    this.loadTrack(0);
+                }
+            }
+
+            updatePlaylistUI() {
+                this.playlist.innerHTML = '<h4 style="margin-bottom: 1rem;">Playlist</h4>';
+                
+                this.playlistItems.forEach((item, index) => {
+                    const playlistItem = document.createElement('div');
+                    playlistItem.className = 'playlist-item';
+                    if (index === this.currentTrackIndex) {
+                        playlistItem.classList.add('active');
+                    }
+                    
+                    playlistItem.innerHTML = `
+                        <span>${item.name}</span>
+                        <button class="audio-btn" onclick="audioPlayer.removeTrack(${index})" 
+                        style="padding: 0.2rem 0.2rem; font-size: 0.8rem; align-items: right; text-align=right;">🗑️remove</button>
+                    `;
+                    
+                    playlistItem.addEventListener('click', () => {
+                        this.currentTrackIndex = index;
+                        this.loadTrack(index);
+                    });
+                    
+                    this.playlist.appendChild(playlistItem);
+                });
+            }
+
+            removeTrack(index) {
+                this.playlistItems.splice(index, 1);
+                if (this.currentTrackIndex >= this.playlistItems.length) {
+                    this.currentTrackIndex = 0;
+                }
+                this.updatePlaylistUI();
+                if (this.playlistItems.length > 0) {
+                    this.loadTrack(this.currentTrackIndex);
+                } else {
+                    this.stop();
+                }
+            }
+
+            updateProgress() {
+                const percent = (this.audio.currentTime / this.audio.duration) * 100;
+                this.progressFill.style.width = `${percent}%`;
+                this.currentTimeSpan.textContent = this.formatTime(this.audio.currentTime);
+            }
+
+            formatTime(seconds) {
+                if (isNaN(seconds)) return '0:00';
+                const minutes = Math.floor(seconds / 60);
+                const remainingSeconds = Math.floor(seconds % 60);
+                return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+            }
+
+            loadSampleAudio() {
+                // Add some sample audio files (you can replace these with your own)
+                //const sampleAudios = [{ name: 'Sample Music 1', url: '#' }];
+                const sampleAudios = [{}];
+                //this.playlistItems = sampleAudios;
+                this.updatePlaylistUI();
+                if (this.playlistItems.length > 0) {
+                    this.loadTrack(0);
+                }
+            }
+        }/* class AudioPlayer */
+    </script>
+   
+    <script> /* Scroll screen */
+        let audioPlayer;
+        document.addEventListener('DOMContentLoaded', function() {
+            audioPlayer = new AudioPlayer();
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            // Add some interactive effects // Animate feature cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(-2px)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.feature-card').forEach(card => {
+                card.style.opacity = '0.9';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+
+<!-- Feature -> per cards reading -->
+    <script>  // input box -  typing text //
+        const speakBtn    = document.getElementById('speakBtn');    // 3-phat am
+        const voiceSelect = document.getElementById('ttsVoice');
+        const text_auto   = document.getElementById('text-auto');   // checked auto fill input text
+        const text_clear  = document.getElementById('text-clear');  // clear text button
+        const text_input  = document.getElementById('text-input');
+        const text_nhap   = document.getElementById('text-nhap');
+        //
+        const rateInput = document.getElementById('ttsRate');
+        const rateValue = document.getElementById('ttsRateValue'); // span
+        const footmess  = document.getElementById('foot-mess');
+        
+        const tts  = window.speechSynthesis;
+        var bmess  = document.getElementById('mes-id');
+        var bigHTML; var tts_card;
+        
+        // Per-card read handlers
+        document.querySelectorAll('.feature-card .card-tts').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const readcard = e.currentTarget.closest('.feature-card');
+                if (!readcard) { alert('No contents found :: ' + readcard); return; }
+                if ( speechSynthesis.speaking ) { 
+                    if ( !confirm('Speaking! (-Click "Cancel" = Stop. )')) { 
+                        speechSynthesis.cancel(); 
+                        if (bigHTML) tts_card.innerHTML = bigHTML;
+                        return;
+                    }
+                    return;
+                }
+                bigHTML = "";
+                const blockcard = readcard.closest('.feature-card');
+                tts_card = blockcard.querySelector(':scope > div'); //child
+                if ( !tts_card ) { alert('No Content.'); return };
+                //
+                tts_card.style.border ="thin dotted blue"; 
+                const clone = blockcard.cloneNode(true);
+                const b = clone.querySelector('.card-tts');
+                if (b) b.remove();                      // remove speak button //
+                bigHTML = clone.innerHTML;              //console.log(bigtext);
+                // convert text //
+                const sentences = getDivText(blockcard); //  console.log( sentences );
+                speakText( sentences );
+            });
+        });
+        
+        // convert - get text //
+        function getDivText(blockcard) {
+            const sentences = []; 
+            const bigtext = blockcard.querySelector(':scope > div').innerText; //clone.innerText.trim();
+            if ( bigtext.length > 0 ) {     
+                const small = bigtext.split(/(?<=[.\n])\s+/);
+                small.forEach(( text, i ) => { 
+                    sentences.push(`<li><span id=chop-${i++}> ${text} </span></li>` );
+                });
+                const mtext = '** chop::' + bigtext.length + ' | ' + small.length + '=chunk.Split *';
+                console.log(mtext, small[0].trim());
+                bmess.innerText = mtext; footmess.style.color = 'white';
+                //
+            } return sentences; 
+        }
+         /* Speak feature card  */
+        function speakText( sentences ) {
+            if ( sentences ) tts_card.innerHTML = '<ul>' + sentences.join('') + '</ul>'; 
+            
+            let index = 0;
+            function speakNext() {
+                if (index >= sentences.length) { tts_card.innerHTML = bigHTML; return }; //End reading
+                // clean text
+                const text  = sentences[index].replace(/<[^>]*>/g, '');
+                // auto fill input
+                const hhour = new Date().getHours() % 2;
+                if (( index % 2 == hhour ) && text.length > 100 && text_auto.checked ) {
+                    text_input.value = text;
+                    text_input.style.height = 'auto';
+                    text_input.style.height = text_input.scrollHeight + 'px';
+                    text_nhap.innerText = '['+ index +'] clone '+ text.length +'.';
+                }
+                // highlight text
+                const lighter = document.getElementById(`chop-${index}`);
+                if (lighter) lighter.classList.add("highlight");
+                //
+                const utterance = new SpeechSynthesisUtterance( text );
+                utterance.rate = parseFloat(rateInput.value || '1');
+                utterance.lang = 'vi-VN';
+                if (voiceSelect.value) { utterance.lang = voiceSelect.value };
+                //
+                footmess.innerText = `[${index}] ` + text.length  + ' * Lang-speak: ' + utterance.lang;
+                console.log(footmess.innerText, voiceSelect.value);
+                utterance.onend = () => {
+                    if (lighter) lighter.classList.remove('highlight')
+                    index++;
+                    speakNext();
+                };
+                tts.speak(utterance);
+            };
+            speakNext();    //tts_card.innerHTML = bigHTML;//.replace(/<[^>]*>/g, '');
+        } 
+        
+        /* Text-input  -  helper func  */
+        // Read text on start //
+        var text    = text_input.value.trim();
+        if (text.length > 0) readInputFirst(text, 'vi-VN');
+
+        text_auto.addEventListener('click', () => { 
+            text_nhap.innerText = text_auto.checked 
+        }); // span
+        
+        text_clear.addEventListener('click', () => { 
+            text_nhap.innerText = 'cleared.'; // span
+            text_input.value = ''; 
+            text = ""; 
+        });
+
+        // speak text-input click //
+        speakBtn.addEventListener('click', () => {
+            if ( tts.speaking ) { tts.cancel(); speakBtn.innerHTML = '▶️ Read' };
+            text = text_input.value.trim();
+            if ( text.length < 1 ) { 
+                text_nhap.innerText = 'empty to read!'; 
+                alert('Select voice or ' + text_nhap.innerText ); 
+                return; 
+            }
+            // read text //
+            readInputFirst(text,'');
+        });
+        // speech-text func //
+        function readInputFirst(text, vlang) {
+                const utter = new SpeechSynthesisUtterance(text);
+                const rate  = parseFloat(rateInput.value || '1');
+                utter.rate = rate;
+                utter.lang = 'en-US';
+                if ( vlang ) utter.lang = vlang;
+                if ( voiceSelect.value ) utter.lang = voiceSelect.value; 
+                if (tts.speaking ) { 
+                    tts.cancel(); 
+                    speakBtn.innerHTML = '▶️ Read';
+                    bmess.innerHTML = 'Speech Stoped - text.len: ' + text.length;
+                } else {
+                    tts.speak(utter);
+                    speakBtn.innerHTML = '▶️ Reading..';
+                    bmess.innerHTML = rate + ' .Speaking voice: "' + utter.lang + '" - text.len: ' + text.length;  
+                }
+                utter.onend = (_) => { speakBtn.innerHTML = '▶️ Read' };
+                footmess.innerText = bmess.innerHTML;
+                console.log('.. (input text). rate', bmess.innerHTML);
+            };
+    </script>
+
+    <script> // control-butons Reader for Features - feature-card
+        const featuresSection = document.querySelector('#features .container');
+        const playBtn = document.getElementById('ttsPlayBtn');
+        const pauseBtn = document.getElementById('ttsPauseBtn');
+        const pauseBtn2 = document.getElementById('ttsPauseBtn2');
+        const stopBtn = document.getElementById('ttsStopBtn');
+        const choptext = document.getElementById('choptext');
+        let utterance = null;
+        let isPaused = false;
+
+        voiceSelect.addEventListener('click', (e) =>{
+            const voimess = document.getElementById('voimess');
+            voimess.textContent = voiceSelect.value;
+        });
+        // Populate voices
+        if (typeof speechSynthesis !== 'undefined') {
+            speechSynthesis.onvoiceschanged = populateVoices();
+            console.log( '.. call populateVoices ..', typeof speechSynthesis );
+            //alert('call populateVoices');
+        }
+        //
+        function populateVoices() {
+            const voices = tts.getVoices();
+            console.log(':: populateVoices ::', voices.length);
+            var option = document.createElement('option');
+            if ( !voices.length ) { 
+                const option = document.createElement('option');
+                option.textContent = '(en-US) Microsoft Voice of USA';
+                option.value = 'en-US'
+                voiceSelect.appendChild(option);
+                //......
+                const option2 = document.createElement('option');
+                option2.textContent = '(vi-VN) The Voice of VietNamese';
+                option2.value = 'vi-VN'
+                voiceSelect.appendChild(option2);
+                return;
+            }
+            voices.forEach( v => { 
+                const option = document.createElement('option');
+                option.value = v.lang;
+                option.textContent = `${v.lang} — ${v.name }`;
+                voiceSelect.appendChild(option);
+            });   
+        };
+        // Get text in a div tag
+        function getFeaturesText() {
+            console.log( 1, '>> getFeaturesText() >> Read all text sections.');
+            const clone = featuresSection.cloneNode(true);
+            // Remove controls from spoken text
+            const controls = clone.querySelector('#ttsControls');
+            if (controls) controls.remove();
+            // Get plain text from features grid
+            const grid = clone.querySelector('.features-grid');
+            const bigtext = grid ? grid.innerText : clone.innerText;
+            const chunk = bigtext.split('▶️ Read');
+            const chunks = [];
+                console.log( 2, bigtext.length, '=> bigtext.split =', chunk.length, 'chunks');
+                chunk.forEach( ch => { chunks.push(ch) });
+            return chunks;
+        }
+        // speak text //
+        function speak(text_s) {
+            if (text_s.length <= 0 || !('speechSynthesis' in window)) { 
+                footmess.innerText = 'speechSynthesis() not detected.. /text.chunks =' + text_s.length;   
+                alert(footmess.innerText);
+                return;
+            }
+            let ii = 0; choptext.innerText = '';
+            function speak_next() {
+                if ( ii >= text_s.length ) { alert('Reading completed! ' + ii ); return };
+                const text = text_s [ii].trim();
+                const temp = text.slice(0,100).replace(/ {3,}/g,' ').replace(/\n/g,'');
+                //
+                bmess.innerText =  '*Lang: {'+ voiceSelect.value + `} ..speaking..[${ii}]..`+ text.length+ '.. {'+temp.slice(0,16).trim() + '}';
+                footmess.innerText = bmess.innerText;
+                console.log(bmess.innerText); 
+                //speak(text);
+                if (tts.speaking) tts.cancel();
+                if ( text.length > 2000 ) {
+                    const textArray = text.split(/[.]/);
+                    console.log(`# Chop section [${ii}] - ${text.length} => chunks = #${textArray.length}#`); 
+                    let jj = 0;
+                    textArray.forEach( tex => {
+                        utterance = new SpeechSynthesisUtterance(tex);
+                        utterance.rate = parseFloat(rateInput.value || '1');
+                        utterance.lang = voiceSelect.value;
+                        utterance.onend = () => { 
+                            playBtn.innerHTML = '▶️ Read';
+                            isPaused = false;
+                            choptext.innerText = `[${ii}]-chunk [${jj++}]-len: ${tex.length}..reading!`;
+                            console.log( choptext.innerText ); 
+                        };
+                        playBtn.innerHTML = '▶️ Reading..';
+                        tts.speak(utterance); 
+                    });
+                } else {
+                    console.log('next ii++ ', ii, text.length);  // next
+                    utterance = new SpeechSynthesisUtterance(text);
+                    utterance.rate = parseFloat(rateInput.value || '1');
+                    utterance.lang = 'en-US';// languageselection
+                    if (voiceSelect.value) {
+                        utterance.lang = voiceSelect.value;
+                    } else utterance.lang = 'vi-VN';
+                    // Speak
+                    playBtn.innerHTML = '▶️ Reading..';
+                    tts.speak(utterance);
+                }
+                utterance.onend = () => { 
+                    playBtn.innerHTML = '▶️ Read'; 
+                    ii++;   isPaused = false ;
+                    speak_next();
+                }
+            };
+            speak_next();
+        }
+        // Speech controls - read all-full text
+        playBtn?.addEventListener('click', () => {
+            if (isPaused && tts.paused) {
+                tts.resume();
+                isPaused = false;
+                playBtn.innerHTML = '▶️ Reading..';
+                return;
+            }
+            // Speak chunk_s = getFeaturesText();   
+            speak(getFeaturesText());
+        });
+        
+        pauseBtn?.addEventListener('click', () => {
+            if (isPaused) { 
+                tts.resume(); 
+                isPaused = false 
+                pauseBtn.innerHTML = '⏸️ Pause';
+                footmess.innerText = 'Speech resumed.'; 
+            }
+            if (tts.speaking && !tts.paused) {
+                tts.pause();
+                isPaused = true;
+                pauseBtn.innerHTML = '⏸️ Resume';
+                footmess.innerText = 'Speech pause: ' + isPaused;
+            }
+            bmess.innerText = footmess.innerText;
+        });
+
+        pauseBtn2?.addEventListener('click', () => {
+            if (isPaused) { 
+                tts.resume(); 
+                isPaused = false 
+                pauseBtn2.innerHTML = '⏸️ Pause';
+                footmess.innerText = 'Speech resumed.'; 
+            }
+            if (tts.speaking && !tts.paused) {
+                tts.pause();
+                isPaused = true;
+                pauseBtn2.innerHTML = '⏸️ Resume';
+                footmess.innerText = 'Speech pause: ' + isPaused;
+            }
+            bmess.innerText = footmess.innerText;
+        });
+
+        stopBtn?.addEventListener('click', () => {
+            if (tts.speaking || tts.paused) {
+                tts.cancel();
+                isPaused = false;
+                playBtn.innerHTML = '▶️ Read';
+                bmess.innerText = 'Speech stoped.';
+            }
+            footmess.innerText = bmess.innerText;
+        });
+
+        rateInput?.addEventListener('input', () => {
+            // If currently speaking, restart with new rate
+            if (tts.speaking && !tts.paused) tts.pause();
+            rateValue.textContent = `${parseFloat(rateInput.value).toFixed(1)}x;`
+            choptext.innerText = 'replay for rate.';
+            tts.resume();
+        });
+
+    </script>
+</body>
+</html>
